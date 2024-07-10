@@ -16,5 +16,10 @@ namespace SchedulingApp
         {
             InitializeComponent();
         }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

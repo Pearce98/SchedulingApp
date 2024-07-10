@@ -90,8 +90,17 @@
     <Compile Include="UpdateCustomer.Designer.cs">
       <DependentUpon>UpdateCustomer.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddAppointment.resx">
+      <DependentUpon>AddAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddCustomer.resx">
+      <DependentUpon>AddCustomer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -104,6 +113,9 @@
     </Compile>
     <EmbeddedResource Include="ReportMenu.resx">
       <DependentUpon>ReportMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateAppointment.resx">
+      <DependentUpon>UpdateAppointment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateCustomer.resx">
       <DependentUpon>UpdateCustomer.cs</DependentUpon>
@@ -120,6 +132,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Login_History.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

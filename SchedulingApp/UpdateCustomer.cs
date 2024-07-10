@@ -16,7 +16,12 @@ namespace SchedulingApp
         
         public UpdateCustomer()
         {
-          
+            InitializeComponent();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
