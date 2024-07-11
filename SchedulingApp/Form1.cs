@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace SchedulingApp
 {
@@ -36,7 +38,28 @@ namespace SchedulingApp
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            bool login = true;
+            //gets what is entered into username and password boxes
+            string user = userTextBox.Text;
+            string pass = userTextBox.Text;
+
+            //opens MySQL connection
+            MySqlConnection conn = new MySqlConnection(sqlClass.connectionString);
+            conn.Open();
+            //Enters command and reads output
+            MySqlCommand command = new MySqlCommand($"SELECT userId FROM user WHERE userName = {user} AND password = {pass}", conn);
+            MySqlDataReader reader = command.ExecuteReader();
+            bool login = false;
+
+            //
+            if (reader.HasRows)
+            {
+                login = true;
+                reader.Read();
+                CurrentUser.setUserID(Convert.ToInt32(reader[0]));
+                
+            }
+
+
             if (login)
             {
                 MainMenu mainMenu = new MainMenu();
