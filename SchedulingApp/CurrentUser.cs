@@ -21,6 +21,14 @@ namespace SchedulingApp
             return currentID;
         }
 
+        public static void setName(string name)
+        {
+            currentUserName = name;
+        }
         
+        public static string returnName()
+        {
+            return currentUserName;
+        }
     }
 }

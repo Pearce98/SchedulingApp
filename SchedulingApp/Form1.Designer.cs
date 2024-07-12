@@ -35,6 +35,8 @@
             this.passwordLabel = new System.Windows.Forms.Label();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.loginLabel = new System.Windows.Forms.Label();
+            this.staticLocationLabel = new System.Windows.Forms.Label();
+            this.locationLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cancelButton
@@ -99,11 +101,31 @@
             this.loginLabel.TabIndex = 7;
             this.loginLabel.Text = "Login";
             // 
+            // staticLocationLabel
+            // 
+            this.staticLocationLabel.AutoSize = true;
+            this.staticLocationLabel.Location = new System.Drawing.Point(175, 19);
+            this.staticLocationLabel.Name = "staticLocationLabel";
+            this.staticLocationLabel.Size = new System.Drawing.Size(51, 13);
+            this.staticLocationLabel.TabIndex = 14;
+            this.staticLocationLabel.Text = "Location:";
+            // 
+            // locationLabel
+            // 
+            this.locationLabel.AutoSize = true;
+            this.locationLabel.Location = new System.Drawing.Point(233, 19);
+            this.locationLabel.Name = "locationLabel";
+            this.locationLabel.Size = new System.Drawing.Size(35, 13);
+            this.locationLabel.TabIndex = 15;
+            this.locationLabel.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(435, 249);
+            this.Controls.Add(this.locationLabel);
+            this.Controls.Add(this.staticLocationLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.passTextBox);
@@ -127,6 +149,8 @@
         private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.Label usernameLabel;
         private System.Windows.Forms.Label loginLabel;
+        private System.Windows.Forms.Label staticLocationLabel;
+        private System.Windows.Forms.Label locationLabel;
     }
 }
 

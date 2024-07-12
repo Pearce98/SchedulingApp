@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.appointmentsLabel = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.aptGridView = new System.Windows.Forms.DataGridView();
+            this.custGridView = new System.Windows.Forms.DataGridView();
             this.customerLabel = new System.Windows.Forms.Label();
             this.currentMonthButton = new System.Windows.Forms.RadioButton();
             this.currentWeekButton = new System.Windows.Forms.RadioButton();
@@ -43,8 +43,9 @@
             this.addCustButton = new System.Windows.Forms.Button();
             this.logoutButton = new System.Windows.Forms.Button();
             this.reportButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.testButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.aptGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.custGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // appointmentsLabel
@@ -57,21 +58,21 @@
             this.appointmentsLabel.TabIndex = 0;
             this.appointmentsLabel.Text = "Appointments";
             // 
-            // dataGridView1
+            // aptGridView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 28);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(519, 291);
-            this.dataGridView1.TabIndex = 1;
+            this.aptGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.aptGridView.Location = new System.Drawing.Point(15, 28);
+            this.aptGridView.Name = "aptGridView";
+            this.aptGridView.Size = new System.Drawing.Size(519, 291);
+            this.aptGridView.TabIndex = 1;
             // 
-            // dataGridView2
+            // custGridView
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(566, 28);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(519, 291);
-            this.dataGridView2.TabIndex = 2;
+            this.custGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.custGridView.Location = new System.Drawing.Point(566, 28);
+            this.custGridView.Name = "custGridView";
+            this.custGridView.Size = new System.Drawing.Size(519, 291);
+            this.custGridView.TabIndex = 2;
             // 
             // customerLabel
             // 
@@ -194,11 +195,22 @@
             this.reportButton.UseVisualStyleBackColor = true;
             this.reportButton.Click += new System.EventHandler(this.reportButton_Click);
             // 
+            // testButton
+            // 
+            this.testButton.Location = new System.Drawing.Point(26, 404);
+            this.testButton.Name = "testButton";
+            this.testButton.Size = new System.Drawing.Size(75, 23);
+            this.testButton.TabIndex = 15;
+            this.testButton.Text = "testButton";
+            this.testButton.UseVisualStyleBackColor = true;
+            this.testButton.Click += new System.EventHandler(this.testButton_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1097, 450);
+            this.Controls.Add(this.testButton);
             this.Controls.Add(this.reportButton);
             this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.addCustButton);
@@ -211,13 +223,13 @@
             this.Controls.Add(this.currentWeekButton);
             this.Controls.Add(this.currentMonthButton);
             this.Controls.Add(this.customerLabel);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.custGridView);
+            this.Controls.Add(this.aptGridView);
             this.Controls.Add(this.appointmentsLabel);
             this.Name = "MainMenu";
             this.Text = "MainMenu";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aptGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.custGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -226,8 +238,8 @@
         #endregion
 
         private System.Windows.Forms.Label appointmentsLabel;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView aptGridView;
+        private System.Windows.Forms.DataGridView custGridView;
         private System.Windows.Forms.Label customerLabel;
         private System.Windows.Forms.RadioButton currentMonthButton;
         private System.Windows.Forms.RadioButton currentWeekButton;
@@ -240,5 +252,6 @@
         private System.Windows.Forms.Button addCustButton;
         private System.Windows.Forms.Button logoutButton;
         private System.Windows.Forms.Button reportButton;
+        private System.Windows.Forms.Button testButton;
     }
 }

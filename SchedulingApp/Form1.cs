@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,14 +21,18 @@ namespace SchedulingApp
         public Form1()
         {
             InitializeComponent();
+            //Display Location
+            locationLabel.Text = RegionInfo.CurrentRegion.DisplayName;
 
             if (CultureInfo.CurrentUICulture.LCID == 2058)
             {
+                //Label Translations in Spanish (Mexico)
                 usernameLabel.Text = "Nombre de usario";
                 passwordLabel.Text = "Contraseña";
                 loginButton.Text = "Acceso";
                 cancelButton.Text = "Cancelar";
                 loginLabel.Text = "Acceso";
+                staticLocationLabel.Text = "Ubicación:";
                 error = "Usario o contranseña invalido";
             }
         }
@@ -46,33 +52,41 @@ namespace SchedulingApp
             MySqlConnection conn = new MySqlConnection(sqlClass.connectionString);
             conn.Open();
             //Enters command and reads output
-            MySqlCommand command = new MySqlCommand($"SELECT userId FROM user WHERE userName = {user} AND password = {pass}", conn);
+            MySqlCommand command = new MySqlCommand($"SELECT userId FROM user WHERE userName = '{user}' AND password = '{pass}'", conn);
             MySqlDataReader reader = command.ExecuteReader();
-            bool login = false;
 
-            //
+            //If command has rows, then username and password are correct
             if (reader.HasRows)
             {
-                login = true;
+                //reads row and sets username and ID
                 reader.Read();
-                CurrentUser.setUserID(Convert.ToInt32(reader[0]));
-                
-            }
+                int ID = Convert.ToInt32(reader[0]);
+                CurrentUser.setUserID(ID);
+                CurrentUser.setName(user);
+                reader.Close();
+                conn.Close();
 
+                //Write to login_history file
+                string logName = "Login_History.txt";
+                string time = DateTime.Now.ToString("u");
+                using (StreamWriter sw = File.AppendText(logName))
+                {
+                    sw.WriteLine($"User ID: {ID} logged in at {time}");
+                }
 
-            if (login)
-            {
+                //Opens main menu for user
                 MainMenu mainMenu = new MainMenu();
-                mainMenu.FormClosed += (s, args) => this.Close();
-                //Lambda Function if the main menu closes, it will close the whole program
+                mainMenu.FormClosed += (s, args) => this.Close(); //Lambda Function if the main menu closes, it will close the whole program
                 this.Hide();
                 mainMenu.Show();
             } 
-            else
+            else 
             {
+                //Username and pass are incorrect
                 MessageBox.Show(error);
                 passTextBox.Text = "";
             }
+
         }
     }
 }

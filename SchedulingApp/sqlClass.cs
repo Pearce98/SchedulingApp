@@ -11,6 +11,5 @@ namespace SchedulingApp
      class sqlClass
     {
         public static string connectionString = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
-
     }
 }
