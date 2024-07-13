@@ -60,17 +60,27 @@
             // 
             // aptGridView
             // 
+            this.aptGridView.AllowUserToAddRows = false;
+            this.aptGridView.AllowUserToDeleteRows = false;
             this.aptGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.aptGridView.Location = new System.Drawing.Point(15, 28);
             this.aptGridView.Name = "aptGridView";
+            this.aptGridView.ReadOnly = true;
+            this.aptGridView.RowHeadersVisible = false;
+            this.aptGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.aptGridView.Size = new System.Drawing.Size(519, 291);
             this.aptGridView.TabIndex = 1;
             // 
             // custGridView
             // 
+            this.custGridView.AllowUserToAddRows = false;
+            this.custGridView.AllowUserToDeleteRows = false;
             this.custGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.custGridView.Location = new System.Drawing.Point(566, 28);
             this.custGridView.Name = "custGridView";
+            this.custGridView.ReadOnly = true;
+            this.custGridView.RowHeadersVisible = false;
+            this.custGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.custGridView.Size = new System.Drawing.Size(519, 291);
             this.custGridView.TabIndex = 2;
             // 
@@ -94,6 +104,7 @@
             this.currentMonthButton.TabStop = true;
             this.currentMonthButton.Text = "Current Month";
             this.currentMonthButton.UseVisualStyleBackColor = true;
+            this.currentMonthButton.CheckedChanged += new System.EventHandler(this.currentMonthButton_CheckedChanged);
             // 
             // currentWeekButton
             // 
@@ -105,6 +116,7 @@
             this.currentWeekButton.TabStop = true;
             this.currentWeekButton.Text = "Current Week";
             this.currentWeekButton.UseVisualStyleBackColor = true;
+            this.currentWeekButton.CheckedChanged += new System.EventHandler(this.currentWeekButton_CheckedChanged);
             // 
             // allAppointmentsButton
             // 
@@ -116,6 +128,7 @@
             this.allAppointmentsButton.TabStop = true;
             this.allAppointmentsButton.Text = "All Appointments";
             this.allAppointmentsButton.UseVisualStyleBackColor = true;
+            this.allAppointmentsButton.CheckedChanged += new System.EventHandler(this.allAppointmentsButton_CheckedChanged);
             // 
             // deleteAptButton
             // 
@@ -154,6 +167,7 @@
             this.deleteCustButton.TabIndex = 10;
             this.deleteCustButton.Text = "Delete";
             this.deleteCustButton.UseVisualStyleBackColor = true;
+            this.deleteCustButton.Click += new System.EventHandler(this.deleteCustButton_Click);
             // 
             // updateCustButton
             // 

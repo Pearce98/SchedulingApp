@@ -18,7 +18,8 @@ namespace SchedulingApp
             InitializeComponent();
 
             //Appointment info view
-            aptGridView.DataSource = returnAptInfo(CurrentUser.returnUserID());
+            allAppointmentsButton.Checked = true;
+            aptGridView.DataSource = returnAllInfo(CurrentUser.returnUserID());
             aptGridView.Columns[0].HeaderText = "Appointment ID";
             aptGridView.Columns[1].HeaderText = "Customer ID";
             aptGridView.Columns[2].HeaderText = "User ID";
@@ -27,7 +28,7 @@ namespace SchedulingApp
 
 
             //Customer Info View
-            custGridView.DataSource = returnCustomerInfo(CurrentUser.returnUserID());
+            custGridView.DataSource = returnCustomerInfo();
             custGridView.Columns[0].HeaderText = "Name";
             custGridView.Columns[1].HeaderText = "Address";
             custGridView.Columns[2].HeaderText = "Zip";
@@ -37,7 +38,7 @@ namespace SchedulingApp
 
         }
 
-        private DataTable returnCustomerInfo(int v)
+        private DataTable returnCustomerInfo()
         {
             //Creates DataTable
             DataTable customers = new DataTable();
@@ -62,7 +63,47 @@ namespace SchedulingApp
             return customers;
         }
 
-        private DataTable returnAptInfo(int userID)
+        private DataTable returnMonthInfo(int userID)
+        {
+            //Creates Datatable
+            DataTable appointments = new DataTable();
+            //MySQL command literal
+            string sqlCMD = "SELECT appointmentID, customerID, userID, title, start " +
+                "FROM appointment " +
+                $"WHERE userId = {userID} AND MONTH('start') = MONTH(curdate())";
+
+            //Connect to server and execute command
+            MySqlConnection conn = new MySqlConnection(sqlClass.connectionString);
+            MySqlCommand aptCMD = new MySqlCommand(sqlCMD, conn);
+
+            //adapt data on output and close connection
+            int dataApater = new MySqlDataAdapter(aptCMD).Fill(appointments);
+            conn.Close();
+
+            return appointments;
+        }
+
+        private DataTable returnWeekInfo(int userID)
+        {
+            //Creates Datatable
+            DataTable appointments = new DataTable();
+            //MySQL command literal
+            string sqlCMD = "SELECT appointmentID, customerID, userID, title, start " +
+                "FROM appointment " +
+                $"WHERE userId = {userID} AND YEARWEEK('start',1) = YEARWEEK(curdate(),1)";
+
+            //Connect to server and execute command
+            MySqlConnection conn = new MySqlConnection(sqlClass.connectionString);
+            MySqlCommand aptCMD = new MySqlCommand(sqlCMD, conn);
+
+            //adapt data on output and close connection
+            int dataApater = new MySqlDataAdapter(aptCMD).Fill(appointments);
+            conn.Close();
+
+            return appointments;
+        }
+
+        private DataTable returnAllInfo(int userID)
         {
             //Creates Datatable
             DataTable appointments = new DataTable();
@@ -80,7 +121,6 @@ namespace SchedulingApp
             conn.Close();
 
             return appointments;
-
         }
 
         private void logoutButton_Click(object sender, EventArgs e)
@@ -121,6 +161,26 @@ namespace SchedulingApp
         private void testButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show(CurrentUser.returnName());
+        }
+
+        private void allAppointmentsButton_CheckedChanged(object sender, EventArgs e)
+        {
+            aptGridView.DataSource = returnAllInfo(CurrentUser.returnUserID());
+        }
+
+        private void currentWeekButton_CheckedChanged(object sender, EventArgs e)
+        {
+            aptGridView.DataSource = returnWeekInfo(CurrentUser.returnUserID());
+        }
+
+        private void currentMonthButton_CheckedChanged(object sender, EventArgs e)
+        {
+            aptGridView.DataSource = returnMonthInfo(CurrentUser.returnUserID());
+        }
+
+        private void deleteCustButton_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

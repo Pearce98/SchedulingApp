@@ -30,24 +30,24 @@
         {
             this.cancelButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
-            this.stateComboBox = new System.Windows.Forms.ComboBox();
-            this.countryComboBox = new System.Windows.Forms.ComboBox();
             this.phoneTextBox = new System.Windows.Forms.TextBox();
             this.addressTextBox = new System.Windows.Forms.TextBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.idTextBox = new System.Windows.Forms.TextBox();
-            this.stateLabel = new System.Windows.Forms.Label();
             this.countryLabel = new System.Windows.Forms.Label();
             this.phoneLabel = new System.Windows.Forms.Label();
             this.addressLabel = new System.Windows.Forms.Label();
             this.nameLabel = new System.Windows.Forms.Label();
             this.idLabel = new System.Windows.Forms.Label();
             this.addCustomerLabel = new System.Windows.Forms.Label();
+            this.cityLabel = new System.Windows.Forms.Label();
+            this.cityTextBox = new System.Windows.Forms.TextBox();
+            this.countryTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(127, 239);
+            this.cancelButton.Location = new System.Drawing.Point(127, 244);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 28;
@@ -57,70 +57,48 @@
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(208, 239);
+            this.addButton.Location = new System.Drawing.Point(208, 244);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 23);
-            this.addButton.TabIndex = 27;
+            this.addButton.TabIndex = 6;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
-            // 
-            // stateComboBox
-            // 
-            this.stateComboBox.FormattingEnabled = true;
-            this.stateComboBox.Location = new System.Drawing.Point(149, 200);
-            this.stateComboBox.Name = "stateComboBox";
-            this.stateComboBox.Size = new System.Drawing.Size(134, 21);
-            this.stateComboBox.TabIndex = 26;
-            // 
-            // countryComboBox
-            // 
-            this.countryComboBox.FormattingEnabled = true;
-            this.countryComboBox.Location = new System.Drawing.Point(149, 167);
-            this.countryComboBox.Name = "countryComboBox";
-            this.countryComboBox.Size = new System.Drawing.Size(134, 21);
-            this.countryComboBox.TabIndex = 25;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // phoneTextBox
             // 
-            this.phoneTextBox.Location = new System.Drawing.Point(149, 134);
+            this.phoneTextBox.Location = new System.Drawing.Point(149, 104);
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.Size = new System.Drawing.Size(134, 20);
-            this.phoneTextBox.TabIndex = 24;
+            this.phoneTextBox.TabIndex = 2;
             // 
             // addressTextBox
             // 
-            this.addressTextBox.Location = new System.Drawing.Point(149, 103);
+            this.addressTextBox.Location = new System.Drawing.Point(149, 136);
             this.addressTextBox.Name = "addressTextBox";
             this.addressTextBox.Size = new System.Drawing.Size(134, 20);
-            this.addressTextBox.TabIndex = 23;
+            this.addressTextBox.TabIndex = 3;
             // 
             // nameTextBox
             // 
             this.nameTextBox.Location = new System.Drawing.Point(149, 74);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(134, 20);
-            this.nameTextBox.TabIndex = 22;
+            this.nameTextBox.TabIndex = 1;
             // 
             // idTextBox
             // 
+            this.idTextBox.Enabled = false;
             this.idTextBox.Location = new System.Drawing.Point(149, 44);
             this.idTextBox.Name = "idTextBox";
+            this.idTextBox.ReadOnly = true;
             this.idTextBox.Size = new System.Drawing.Size(134, 20);
             this.idTextBox.TabIndex = 21;
-            // 
-            // stateLabel
-            // 
-            this.stateLabel.AutoSize = true;
-            this.stateLabel.Location = new System.Drawing.Point(58, 203);
-            this.stateLabel.Name = "stateLabel";
-            this.stateLabel.Size = new System.Drawing.Size(85, 13);
-            this.stateLabel.TabIndex = 20;
-            this.stateLabel.Text = "State / Province";
             // 
             // countryLabel
             // 
             this.countryLabel.AutoSize = true;
-            this.countryLabel.Location = new System.Drawing.Point(100, 170);
+            this.countryLabel.Location = new System.Drawing.Point(100, 209);
             this.countryLabel.Name = "countryLabel";
             this.countryLabel.Size = new System.Drawing.Size(43, 13);
             this.countryLabel.TabIndex = 19;
@@ -129,7 +107,7 @@
             // phoneLabel
             // 
             this.phoneLabel.AutoSize = true;
-            this.phoneLabel.Location = new System.Drawing.Point(65, 137);
+            this.phoneLabel.Location = new System.Drawing.Point(65, 107);
             this.phoneLabel.Name = "phoneLabel";
             this.phoneLabel.Size = new System.Drawing.Size(78, 13);
             this.phoneLabel.TabIndex = 18;
@@ -138,7 +116,7 @@
             // addressLabel
             // 
             this.addressLabel.AutoSize = true;
-            this.addressLabel.Location = new System.Drawing.Point(98, 106);
+            this.addressLabel.Location = new System.Drawing.Point(98, 139);
             this.addressLabel.Name = "addressLabel";
             this.addressLabel.Size = new System.Drawing.Size(45, 13);
             this.addressLabel.TabIndex = 17;
@@ -172,21 +150,44 @@
             this.addCustomerLabel.TabIndex = 29;
             this.addCustomerLabel.Text = "Add Customer";
             // 
+            // cityLabel
+            // 
+            this.cityLabel.AutoSize = true;
+            this.cityLabel.Location = new System.Drawing.Point(119, 174);
+            this.cityLabel.Name = "cityLabel";
+            this.cityLabel.Size = new System.Drawing.Size(24, 13);
+            this.cityLabel.TabIndex = 30;
+            this.cityLabel.Text = "City";
+            // 
+            // cityTextBox
+            // 
+            this.cityTextBox.Location = new System.Drawing.Point(149, 171);
+            this.cityTextBox.Name = "cityTextBox";
+            this.cityTextBox.Size = new System.Drawing.Size(134, 20);
+            this.cityTextBox.TabIndex = 4;
+            // 
+            // countryTextBox
+            // 
+            this.countryTextBox.Location = new System.Drawing.Point(149, 206);
+            this.countryTextBox.Name = "countryTextBox";
+            this.countryTextBox.Size = new System.Drawing.Size(134, 20);
+            this.countryTextBox.TabIndex = 5;
+            // 
             // AddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(309, 286);
+            this.ClientSize = new System.Drawing.Size(309, 284);
+            this.Controls.Add(this.countryTextBox);
+            this.Controls.Add(this.cityTextBox);
+            this.Controls.Add(this.cityLabel);
             this.Controls.Add(this.addCustomerLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.addButton);
-            this.Controls.Add(this.stateComboBox);
-            this.Controls.Add(this.countryComboBox);
             this.Controls.Add(this.phoneTextBox);
             this.Controls.Add(this.addressTextBox);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.idTextBox);
-            this.Controls.Add(this.stateLabel);
             this.Controls.Add(this.countryLabel);
             this.Controls.Add(this.phoneLabel);
             this.Controls.Add(this.addressLabel);
@@ -203,18 +204,18 @@
 
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button addButton;
-        private System.Windows.Forms.ComboBox stateComboBox;
-        private System.Windows.Forms.ComboBox countryComboBox;
         private System.Windows.Forms.TextBox phoneTextBox;
         private System.Windows.Forms.TextBox addressTextBox;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.TextBox idTextBox;
-        private System.Windows.Forms.Label stateLabel;
         private System.Windows.Forms.Label countryLabel;
         private System.Windows.Forms.Label phoneLabel;
         private System.Windows.Forms.Label addressLabel;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label idLabel;
         private System.Windows.Forms.Label addCustomerLabel;
+        private System.Windows.Forms.Label cityLabel;
+        private System.Windows.Forms.TextBox cityTextBox;
+        private System.Windows.Forms.TextBox countryTextBox;
     }
 }

@@ -46,7 +46,7 @@ namespace SchedulingApp
         {
             //gets what is entered into username and password boxes
             string user = userTextBox.Text;
-            string pass = userTextBox.Text;
+            string pass = passTextBox.Text;
 
             //opens MySQL connection
             MySqlConnection conn = new MySqlConnection(sqlClass.connectionString);
