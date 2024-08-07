@@ -43,24 +43,26 @@
             this.cityLabel = new System.Windows.Forms.Label();
             this.cityTextBox = new System.Windows.Forms.TextBox();
             this.countryTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.postalTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(127, 244);
+            this.cancelButton.Location = new System.Drawing.Point(128, 312);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 28;
+            this.cancelButton.TabIndex = 8;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(208, 244);
+            this.addButton.Location = new System.Drawing.Point(208, 312);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 23);
-            this.addButton.TabIndex = 6;
+            this.addButton.TabIndex = 7;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
@@ -173,11 +175,29 @@
             this.countryTextBox.Size = new System.Drawing.Size(134, 20);
             this.countryTextBox.TabIndex = 5;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(79, 244);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(64, 13);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Postal Code";
+            // 
+            // postalTextBox
+            // 
+            this.postalTextBox.Location = new System.Drawing.Point(149, 241);
+            this.postalTextBox.Name = "postalTextBox";
+            this.postalTextBox.Size = new System.Drawing.Size(134, 20);
+            this.postalTextBox.TabIndex = 6;
+            // 
             // AddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(309, 284);
+            this.ClientSize = new System.Drawing.Size(309, 347);
+            this.Controls.Add(this.postalTextBox);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.countryTextBox);
             this.Controls.Add(this.cityTextBox);
             this.Controls.Add(this.cityLabel);
@@ -217,5 +237,7 @@
         private System.Windows.Forms.Label cityLabel;
         private System.Windows.Forms.TextBox cityTextBox;
         private System.Windows.Forms.TextBox countryTextBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox postalTextBox;
     }
 }

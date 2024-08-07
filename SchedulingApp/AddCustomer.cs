@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,20 +18,9 @@ namespace SchedulingApp
         public AddCustomer()
         {
             InitializeComponent();
-            
+            //comment
             //Get ID for new Customer
-            MySqlConnection conn = new MySqlConnection(sqlClass.connectionString);
-            conn.Open();
-            MySqlDataReader reader = null;
-            MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM customer", conn);
-            reader = cmd.ExecuteReader();
-            int count = 1;
-            while (reader.Read())
-            {
-                count += Convert.ToInt32(reader["COUNT(*)"]);
-            }
-            reader.Close();
-            conn.Close();
+            int count = sqlClass.getCount("customer") + 1;
             idTextBox.Text = count.ToString();
         }
 
@@ -46,7 +37,8 @@ namespace SchedulingApp
                 string.IsNullOrEmpty(phoneTextBox.Text) ||
                 string.IsNullOrEmpty(addressTextBox.Text) ||
                 string.IsNullOrEmpty(cityTextBox.Text) ||
-                string.IsNullOrEmpty(countryTextBox.Text)
+                string.IsNullOrEmpty(countryTextBox.Text) ||
+                string.IsNullOrEmpty(postalTextBox.Text)
                 )
             {
                 MessageBox.Show("Please enter data for each entry.");
@@ -63,81 +55,72 @@ namespace SchedulingApp
                 }
             }
 
-            int ID = Convert.ToInt32(idTextBox.Text);
+            int custID = Convert.ToInt32(idTextBox.Text);
             string name = nameTextBox.Text;
             string phone = phoneTextBox.Text;
             string address = addressTextBox.Text;
             string city = cityTextBox.Text;
             string country = countryTextBox.Text;
-            string active = "1";
+            string postal = postalTextBox.Text;
             DateTime now = DateTime.Now;
             string creator = CurrentUser.returnName();
 
-
-            MySqlConnection conn = new MySqlConnection(sqlClass.connectionString);
-            conn.Open();
-            //Country
-            //check if country in country tabel
-            string qCountry = $"SELECT country FROM country " +
-                              $"WHERE country = '{country}'";
-            MySqlCommand cmdCountry = new MySqlCommand(qCountry, conn);
-            MySqlDataReader countryReader = cmdCountry.ExecuteReader();
-            bool check = false;
-            while (countryReader.Read())
+            //IDs for customer location
+            int countryID;
+            int cityID;
+            int addressID;
+            
+            if (!sqlClass.checker("country",country))
             {
-                if (Convert.ToString(countryReader[0]) == country)
-                {
-                    check = true;
-                }
-            }
-            countryReader.Close();
-
-            //If country not in table
-            int countryCount;
-            if (!check)
-            {
-                //Counts country
-                string countryCountQuery = $"SELECT countryId FROM country ORDER BY countryId DESC LIMIT 1";
-                MySqlCommand countryCountCMD = new MySqlCommand(countryCountQuery, conn);
-                countryCount = Convert.ToInt32(countryCountCMD.ExecuteScalar()) + 1;
-                //Insert country into table
-                string countryInsertQuery = $"INSERT INTO country " +
-                                            $"VALUES ({countryCount}, '{country}', NOW(), '{CurrentUser.returnName()}', NOW(), '{CurrentUser.returnName()}')";
-                MySqlCommand countryInsertCMD = new MySqlCommand(countryInsertQuery, conn);
-                countryInsertCMD.ExecuteNonQuery();
-            }
-            else //get country ID if it is in the table
-            {
-                string findCountryID = $"SELECT countryId FROM country " +
-                                       $"WHERE country = '{country}'";
-                var idCMD = new MySqlCommand(findCountryID, conn);
-                countryCount = Convert.ToInt32(idCMD.ExecuteScalar());
+                //add country to table
+                countryID = sqlClass.getCount("country") + 1;
+                string cmdString = "INSERT INTO country " +
+                    $"VALUES ('{countryID}', '{country}', '{now}', '{creator}', '{now}', '{creator}')";
+                sqlClass.insertItem(cmdString);
             }
 
-
-
-
-            conn.Close();
-            return;
-            /*
-            string cmdString = $"INSERT INTO customer" +
-                $"VALUES ('{ID}', '{name}', '{address}', '{active}', '{now}', '{creator}', '{now}', '{creator}')";
-
             
-            MySqlCommand cmd = new MySqlCommand(cmdString, conn);
-            cmd.ExecuteNonQuery();
-            
-            
-            
-            
-            
-            conn.Close();
+            else
+            {
+                countryID = sqlClass.getItemID("country", country);
+            }
 
+            if (!sqlClass.checker("city",city))
+            {
+                //add city to table
+                cityID = sqlClass.getCount("city") + 1;
+                string cmdString = "INSERT INTO city " +
+                    $"VALUES ('{cityID}', '{city}', '{countryID}', '{now}', '{creator}', '{now}', '{creator}')";
+                sqlClass.insertItem(cmdString);
+            }
+            else
+            {
+                cityID = sqlClass.getItemID("city", city);
+            }
 
+            if (!sqlClass.checker("address",address))
+            {
+                //add address to table
+                addressID = sqlClass.getCount("address") + 1;
+                string cmdString = "INSERT INTO address" +
+                    $"VALUES ('{addressID}', '{address}', ' ', '{cityID}', '{postal}', '{phone}', '{now}', '{creator}', '{now}', '{creator}')";
+                sqlClass.insertItem(cmdString);
+            }
+            else
+            {
+                addressID = sqlClass.getItemID("address", address);
+            }
 
-            MessageBox.Show("New customer added");
+            //add customer to table
+            string cmd = "INSERT INTO customer " +
+                $"VALUES ('{custID}', '{name}', '{addressID}', '1', '{now}', '{creator}', '{now}', '{creator}')";
+            sqlClass.insertItem(cmd);
+
+            MessageBox.Show("Customer added to database");
             Close();
-            */
+
+
         }
+        
     }
 }
