@@ -185,7 +185,32 @@ namespace SchedulingApp
 
         private void deleteCustButton_Click(object sender, EventArgs e)
         {
+            //Selected Row will be asked to be deleted
+            int custID = (int)custGridView.SelectedRows[0].Cells[0].Value;
+            var confirmResult = MessageBox.Show($"Are you sure you wish to delete customer? ID = {custID}", "Confirmation", MessageBoxButtons.YesNo);
             
+            //try catch statement is for customers with appointments
+            try
+            {
+                if (confirmResult == DialogResult.Yes)
+                {
+                    //deletes if yes is selected
+                    string deleteCust = "DELETE FROM customer " +
+                        $"WHERE customerId = '{custID}'";
+                    sqlClass.insertItem(deleteCust);
+                    MessageBox.Show("Customer deleted from system");
+                    returnCustomerInfo();
+                }
+                else
+                {
+                    //doesnt delete if no is selected
+                    MessageBox.Show("Customer Not Deleted");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Cannot delete customers with appointments scheduled");
+            }
         }
     }
 }

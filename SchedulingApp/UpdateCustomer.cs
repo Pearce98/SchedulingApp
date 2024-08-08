@@ -123,8 +123,6 @@ namespace SchedulingApp
                     $"VALUES ('{countryID}', '{country}', '{now}', '{creator}', '{now}', '{creator}')";
                 sqlClass.insertItem(cmdString);
             }
-
-
             else
             {
                 countryID = sqlClass.getItemID("country", country);
@@ -157,8 +155,10 @@ namespace SchedulingApp
             }
 
             //update customer in database
-            string custUpdate = "UPDATE customer" +
-                $"SET customerName = '{name}', SET addressId = '{addressID}', SET lastUpdate = '{now}', SET lastUpdateBy = '{creator}'";
+            string custUpdate = "UPDATE customer " +
+                $"SET customerName = '{name}', addressId = {addressID}, lastUpdate = '{now}', lastUpdateBy = '{creator}' " +
+                $"WHERE customerId = '{custID}'";
+            sqlClass.insertItem(custUpdate);
 
 
             MessageBox.Show("Customer information updated");

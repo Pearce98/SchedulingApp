@@ -20,7 +20,7 @@ namespace SchedulingApp
             InitializeComponent();
             //comment
             //Get ID for new Customer
-            int count = sqlClass.getCount("customer") + 1;
+            int count = sqlClass.getMax("customer") + 1;
             idTextBox.Text = count.ToString();
         }
 
@@ -74,7 +74,7 @@ namespace SchedulingApp
             if (!sqlClass.checker("country",country))
             {
                 //add country to table
-                countryID = sqlClass.getCount("country") + 1;
+                countryID = sqlClass.getMax("country") + 1;
                 string cmdString = "INSERT INTO country " +
                     $"VALUES ('{countryID}', '{country}', '{now}', '{creator}', '{now}', '{creator}')";
                 sqlClass.insertItem(cmdString);
@@ -89,7 +89,7 @@ namespace SchedulingApp
             if (!sqlClass.checker("city",city))
             {
                 //add city to table
-                cityID = sqlClass.getCount("city") + 1;
+                cityID = sqlClass.getMax("city") + 1;
                 string cmdString = "INSERT INTO city " +
                     $"VALUES ('{cityID}', '{city}', '{countryID}', '{now}', '{creator}', '{now}', '{creator}')";
                 sqlClass.insertItem(cmdString);
@@ -102,7 +102,7 @@ namespace SchedulingApp
             if (!sqlClass.checker("address",address))
             {
                 //add address to table
-                addressID = sqlClass.getCount("address") + 1;
+                addressID = sqlClass.getMax("address") + 1;
                 string cmdString = "INSERT INTO address " +
                     $"VALUES ('{addressID}', '{address}', '{address2}', '{cityID}', '{postal}', '{phone}', '{now}', '{creator}', '{now}', '{creator}')";
                 sqlClass.insertItem(cmdString);

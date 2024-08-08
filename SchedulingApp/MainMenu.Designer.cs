@@ -81,7 +81,7 @@
             this.custGridView.ReadOnly = true;
             this.custGridView.RowHeadersVisible = false;
             this.custGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.custGridView.Size = new System.Drawing.Size(519, 291);
+            this.custGridView.Size = new System.Drawing.Size(730, 291);
             this.custGridView.TabIndex = 2;
             // 
             // customerLabel
@@ -161,7 +161,7 @@
             // 
             // deleteCustButton
             // 
-            this.deleteCustButton.Location = new System.Drawing.Point(1009, 325);
+            this.deleteCustButton.Location = new System.Drawing.Point(1221, 325);
             this.deleteCustButton.Name = "deleteCustButton";
             this.deleteCustButton.Size = new System.Drawing.Size(75, 23);
             this.deleteCustButton.TabIndex = 10;
@@ -171,7 +171,7 @@
             // 
             // updateCustButton
             // 
-            this.updateCustButton.Location = new System.Drawing.Point(928, 326);
+            this.updateCustButton.Location = new System.Drawing.Point(1140, 326);
             this.updateCustButton.Name = "updateCustButton";
             this.updateCustButton.Size = new System.Drawing.Size(75, 23);
             this.updateCustButton.TabIndex = 11;
@@ -181,7 +181,7 @@
             // 
             // addCustButton
             // 
-            this.addCustButton.Location = new System.Drawing.Point(847, 326);
+            this.addCustButton.Location = new System.Drawing.Point(1059, 325);
             this.addCustButton.Name = "addCustButton";
             this.addCustButton.Size = new System.Drawing.Size(75, 23);
             this.addCustButton.TabIndex = 12;
@@ -191,7 +191,7 @@
             // 
             // logoutButton
             // 
-            this.logoutButton.Location = new System.Drawing.Point(928, 415);
+            this.logoutButton.Location = new System.Drawing.Point(1140, 415);
             this.logoutButton.Name = "logoutButton";
             this.logoutButton.Size = new System.Drawing.Size(156, 23);
             this.logoutButton.TabIndex = 13;
@@ -201,7 +201,7 @@
             // 
             // reportButton
             // 
-            this.reportButton.Location = new System.Drawing.Point(766, 415);
+            this.reportButton.Location = new System.Drawing.Point(978, 415);
             this.reportButton.Name = "reportButton";
             this.reportButton.Size = new System.Drawing.Size(156, 23);
             this.reportButton.TabIndex = 14;
@@ -223,7 +223,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1097, 450);
+            this.ClientSize = new System.Drawing.Size(1320, 450);
             this.Controls.Add(this.testButton);
             this.Controls.Add(this.reportButton);
             this.Controls.Add(this.logoutButton);

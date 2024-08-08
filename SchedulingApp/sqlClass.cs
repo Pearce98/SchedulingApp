@@ -32,6 +32,23 @@ namespace SchedulingApp
             return count;
         }
 
+        public static int getMax(string tableName)
+        {
+            //get length of the table
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand($"SELECT MAX({tableName}Id) AS count FROM {tableName}", conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            int count = 0;
+            while (reader.Read())
+            {
+                count += Convert.ToInt32(reader["count"]);
+            }
+            reader.Close();
+            conn.Close();
+            return count;
+        }
+
         public static bool checker(string tableType, string item)
         {
             MySqlConnection conn = new MySqlConnection(connectionString);
