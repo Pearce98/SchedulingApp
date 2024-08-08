@@ -110,6 +110,28 @@ namespace SchedulingApp
             return item;
         }
 
+        public static void fillComboBox(ComboBox cBox, string query)
+        {
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string line = Convert.ToString(reader[0]);
+                    cBox.Items.Add(line);
+                }
+                conn.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Add customers before creating an appointment.");
+            }
+            
+
+        }
     }
 
 

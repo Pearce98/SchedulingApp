@@ -138,8 +138,9 @@ namespace SchedulingApp
 
         private void addAptButton_Click(object sender, EventArgs e)
         {
+            // --------------------------------------------------------------------- Add something to update appointment datagridview
             AddAppointment addAppointment = new AddAppointment();
-            addAppointment.Show();
+            addAppointment.ShowDialog();
         }
 
         private void updateAptButton_Click(object sender, EventArgs e)
