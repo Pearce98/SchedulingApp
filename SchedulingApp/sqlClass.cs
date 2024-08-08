@@ -18,7 +18,7 @@ namespace SchedulingApp
         public static int getCount(string tableName)
         {
             //get length of the table
-            MySqlConnection conn = new MySqlConnection(sqlClass.connectionString);
+            MySqlConnection conn = new MySqlConnection(connectionString);
             conn.Open();
             MySqlCommand cmd = new MySqlCommand($"SELECT COUNT(*) FROM {tableName}", conn);
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -34,7 +34,7 @@ namespace SchedulingApp
 
         public static bool checker(string tableType, string item)
         {
-            MySqlConnection conn = new MySqlConnection(sqlClass.connectionString);
+            MySqlConnection conn = new MySqlConnection(connectionString);
             conn.Open();
             //check if item in table
             string q = $"SELECT {tableType} FROM {tableType} " +
@@ -57,7 +57,7 @@ namespace SchedulingApp
         public static void insertItem(string query)
         {
             //inserts item into table
-            MySqlConnection conn = new MySqlConnection(sqlClass.connectionString);
+            MySqlConnection conn = new MySqlConnection(connectionString);
             conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, conn);
             cmd.ExecuteNonQuery();
@@ -67,7 +67,7 @@ namespace SchedulingApp
         public static int getItemID(string table, string name)
         {
             string query = $"SELECT {table+"Id"} FROM {table} WHERE {table} = '{name}'";
-            MySqlConnection conn = new MySqlConnection(sqlClass.connectionString);
+            MySqlConnection conn = new MySqlConnection(connectionString);
             conn.Open();
             int ID = 0;
             MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -77,6 +77,20 @@ namespace SchedulingApp
                 ID = Convert.ToInt32(reader[0]);
             }
             return ID;
+        }
+
+        public static string returnItem(string cmdString)
+        {
+            string item = "";
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand(cmdString, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                item = Convert.ToString(reader[0]);
+            }
+            return item;
         }
 
     }

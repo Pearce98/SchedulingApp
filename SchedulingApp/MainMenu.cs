@@ -28,22 +28,23 @@ namespace SchedulingApp
 
 
             //Customer Info View
-            custGridView.DataSource = returnCustomerInfo();
-            custGridView.Columns[0].HeaderText = "Name";
-            custGridView.Columns[1].HeaderText = "Address";
-            custGridView.Columns[2].HeaderText = "Zip";
-            custGridView.Columns[3].HeaderText = "Phone";
-            custGridView.Columns[4].HeaderText = "City";
-            custGridView.Columns[5].HeaderText = "Country";
+            returnCustomerInfo();
+            custGridView.Columns[0].HeaderText = "Customer ID";
+            custGridView.Columns[1].HeaderText = "Name";
+            custGridView.Columns[2].HeaderText = "Address";
+            custGridView.Columns[3].HeaderText = "Zip";
+            custGridView.Columns[4].HeaderText = "Phone";
+            custGridView.Columns[5].HeaderText = "City";
+            custGridView.Columns[6].HeaderText = "Country";
 
         }
 
-        private DataTable returnCustomerInfo()
+        public void returnCustomerInfo()
         {
             //Creates DataTable
             DataTable customers = new DataTable();
             //MySQL command literal
-            string sqlCMD = @"SELECT DISTINCT customerName, address, postalCode, phone, city, country
+            string sqlCMD = @"SELECT DISTINCT customerId, customerName, address, postalCode, phone, city, country
                               FROM customer
                               INNER JOIN address
                                   ON customer.addressId = address.addressId
@@ -56,14 +57,15 @@ namespace SchedulingApp
             MySqlCommand custCMD = new MySqlCommand(sqlCMD, conn);
 
             //adapt the data on the output and close connection
-            int dataAdapter = new MySqlDataAdapter(custCMD).Fill(customers);
+            var dataAdapter = new MySqlDataAdapter(custCMD).Fill(customers);
+            custGridView.DataSource = customers;
+
             conn.Close();
             
 
-            return customers;
         }
 
-        private DataTable returnMonthInfo(int userID)
+        public DataTable returnMonthInfo(int userID)
         {
             //Creates Datatable
             DataTable appointments = new DataTable();
@@ -83,7 +85,7 @@ namespace SchedulingApp
             return appointments;
         }
 
-        private DataTable returnWeekInfo(int userID)
+        public DataTable returnWeekInfo(int userID)
         {
             //Creates Datatable
             DataTable appointments = new DataTable();
@@ -103,7 +105,7 @@ namespace SchedulingApp
             return appointments;
         }
 
-        private DataTable returnAllInfo(int userID)
+        public DataTable returnAllInfo(int userID)
         {
             //Creates Datatable
             DataTable appointments = new DataTable();
@@ -149,13 +151,16 @@ namespace SchedulingApp
         private void addCustButton_Click(object sender, EventArgs e)
         {
             AddCustomer addCustomer = new AddCustomer();
-            addCustomer.Show();
+            addCustomer.ShowDialog();
+            returnCustomerInfo();
         }
 
         private void updateCustButton_Click(object sender, EventArgs e)
         {
-            UpdateCustomer updateCustomer = new UpdateCustomer();
-            updateCustomer.Show();
+            int custID = (int)custGridView.SelectedRows[0].Cells[0].Value;
+            UpdateCustomer updateCustomer = new UpdateCustomer(custID);
+            updateCustomer.ShowDialog();
+            returnCustomerInfo();
         }
 
         private void testButton_Click(object sender, EventArgs e)

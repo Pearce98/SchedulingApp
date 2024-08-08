@@ -59,10 +59,11 @@ namespace SchedulingApp
             string name = nameTextBox.Text;
             string phone = phoneTextBox.Text;
             string address = addressTextBox.Text;
+            string address2 = "";
             string city = cityTextBox.Text;
             string country = countryTextBox.Text;
             string postal = postalTextBox.Text;
-            DateTime now = DateTime.Now;
+            string now = DateTime.Now.ToString(@"yyyy-MM-dd hh:mm:ss");
             string creator = CurrentUser.returnName();
 
             //IDs for customer location
@@ -102,8 +103,8 @@ namespace SchedulingApp
             {
                 //add address to table
                 addressID = sqlClass.getCount("address") + 1;
-                string cmdString = "INSERT INTO address" +
-                    $"VALUES ('{addressID}', '{address}', ' ', '{cityID}', '{postal}', '{phone}', '{now}', '{creator}', '{now}', '{creator}')";
+                string cmdString = "INSERT INTO address " +
+                    $"VALUES ('{addressID}', '{address}', '{address2}', '{cityID}', '{postal}', '{phone}', '{now}', '{creator}', '{now}', '{creator}')";
                 sqlClass.insertItem(cmdString);
             }
             else
@@ -115,10 +116,11 @@ namespace SchedulingApp
             string cmd = "INSERT INTO customer " +
                 $"VALUES ('{custID}', '{name}', '{addressID}', '1', '{now}', '{creator}', '{now}', '{creator}')";
             sqlClass.insertItem(cmd);
+            
+            
 
             MessageBox.Show("Customer added to database");
             Close();
-
 
         }
         
