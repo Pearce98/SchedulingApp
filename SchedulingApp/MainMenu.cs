@@ -23,7 +23,7 @@ namespace SchedulingApp
             aptGridView.Columns[0].HeaderText = "Appointment ID";
             aptGridView.Columns[1].HeaderText = "Customer ID";
             aptGridView.Columns[2].HeaderText = "User ID";
-            aptGridView.Columns[3].HeaderText = "Title";
+            aptGridView.Columns[3].HeaderText = "Type";
             aptGridView.Columns[4].HeaderText = "Date of Appointment";
 
 
@@ -70,7 +70,7 @@ namespace SchedulingApp
             //Creates Datatable
             DataTable appointments = new DataTable();
             //MySQL command literal
-            string sqlCMD = "SELECT appointmentID, customerID, userID, title, start " +
+            string sqlCMD = "SELECT appointmentID, customerID, userID, type, start " +
                 "FROM appointment " +
                 $"WHERE userId = {userID} AND MONTH('start') = MONTH(curdate())";
 
@@ -90,7 +90,7 @@ namespace SchedulingApp
             //Creates Datatable
             DataTable appointments = new DataTable();
             //MySQL command literal
-            string sqlCMD = "SELECT appointmentID, customerID, userID, title, start " +
+            string sqlCMD = "SELECT appointmentID, customerID, userID, type, start " +
                 "FROM appointment " +
                 $"WHERE userId = {userID} AND YEARWEEK('start',1) = YEARWEEK(curdate(),1)";
 
@@ -110,7 +110,7 @@ namespace SchedulingApp
             //Creates Datatable
             DataTable appointments = new DataTable();
             //MySQL command literal
-            string sqlCMD = "SELECT appointmentID, customerID, userID, title, start " +
+            string sqlCMD = "SELECT appointmentID, customerID, userID, type, start " +
                 "FROM appointment " +
                 $"WHERE userID = {Convert.ToString(userID)}";
 

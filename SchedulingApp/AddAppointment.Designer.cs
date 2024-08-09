@@ -45,6 +45,7 @@
             this.startTimeTextBox = new System.Windows.Forms.TextBox();
             this.endDateTextBox = new System.Windows.Forms.TextBox();
             this.endTimeTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // addAppointmentLabel
@@ -191,11 +192,23 @@
             this.endTimeTextBox.Size = new System.Drawing.Size(214, 20);
             this.endTimeTextBox.TabIndex = 5;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(421, 77);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(213, 65);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Note:\r\nBusiness Hours are 9:00 am - 5:00 pm EST.\r\nPlease put dates in MM-dd-yyyy " +
+    "format.\r\nPlease put times in hh:mm:ss tt format.\r\nYou may put times in your own " +
+    "time zone.";
+            // 
             // AddAppointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(478, 292);
+            this.ClientSize = new System.Drawing.Size(646, 292);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.endTimeTextBox);
             this.Controls.Add(this.endDateTextBox);
             this.Controls.Add(this.startTimeTextBox);
@@ -239,5 +252,6 @@
         private System.Windows.Forms.TextBox startTimeTextBox;
         private System.Windows.Forms.TextBox endDateTextBox;
         private System.Windows.Forms.TextBox endTimeTextBox;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -32,6 +32,8 @@ namespace SchedulingApp
         private void addButton_Click(object sender, EventArgs e)
         {
             //Check each box to see if there is something in each
+            
+            
             if (string.IsNullOrEmpty(idTextBox.Text) ||
                 string.IsNullOrEmpty(nameTextBox.Text) ||
                 string.IsNullOrEmpty(phoneTextBox.Text) ||
@@ -65,6 +67,7 @@ namespace SchedulingApp
             string postal = postalTextBox.Text;
             string now = DateTime.Now.ToString(@"yyyy-MM-dd hh:mm:ss");
             string creator = CurrentUser.returnName();
+
 
             //IDs for customer location
             int countryID;
@@ -116,7 +119,6 @@ namespace SchedulingApp
             string cmd = "INSERT INTO customer " +
                 $"VALUES ('{custID}', '{name}', '{addressID}', '1', '{now}', '{creator}', '{now}', '{creator}')";
             sqlClass.insertItem(cmd);
-            
             
 
             MessageBox.Show("Customer added to database");
