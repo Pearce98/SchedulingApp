@@ -88,7 +88,7 @@ namespace SchedulingApp
         private void reportButton_Click(object sender, EventArgs e)
         {
             ReportMenu reportMenu = new ReportMenu();
-            reportMenu.Show();
+            reportMenu.ShowDialog();
         }
 
         private void addAptButton_Click(object sender, EventArgs e)
@@ -100,7 +100,8 @@ namespace SchedulingApp
 
         private void updateAptButton_Click(object sender, EventArgs e)
         {
-            UpdateAppointment updateAppointment = new UpdateAppointment();
+            int aptID = (int)aptGridView.SelectedRows[0].Cells[0].Value;
+            UpdateAppointment updateAppointment = new UpdateAppointment(aptID);
             updateAppointment.ShowDialog();
             buttonChecker();
         }
@@ -172,6 +173,7 @@ namespace SchedulingApp
 
         private void buttonChecker()
         {
+            //used to refresh appointments table when appointments added, updated, or deleted
             if (allAppointmentsButton.Checked == true)
             {
                 returnAllInfo(CurrentUser.returnUserID());
@@ -183,6 +185,36 @@ namespace SchedulingApp
             else
             {
                 returnMonthInfo(CurrentUser.returnUserID());
+            }
+        }
+
+        private void deleteAptButton_Click(object sender, EventArgs e)
+        {
+            //Selected Row will be deleted
+            int aptID = (int)aptGridView.SelectedRows[0].Cells[0].Value;
+            var confirmResult = MessageBox.Show($"Are you sure you wish to delete appointment {aptID}?","Confirmation", MessageBoxButtons.YesNo);
+            
+            try
+            {
+                if (confirmResult == DialogResult.Yes)
+                {
+                    //Deletes appointment if yes is selected
+                    string delete = "DELETE FROM appointment " +
+                                    $"WHERE appointmentId = {aptID}";
+                    sqlClass.insertItem(delete);
+                    MessageBox.Show("Appointment deleted");
+                }
+                else
+                {
+                    //Doesn't delete if no is selected
+                    MessageBox.Show("Appointment not deleted");
+                }
+                //refreshes appointment table
+                buttonChecker();
+            }
+            catch
+            {
+                MessageBox.Show("Unable to delete appointment.");
             }
         }
     }

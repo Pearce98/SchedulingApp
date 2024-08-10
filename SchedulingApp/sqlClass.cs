@@ -13,10 +13,11 @@ using System.Xml.Linq;
 
 namespace SchedulingApp
 {
-     class sqlClass
+    class sqlClass
     {
         public static string connectionString = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
-        
+        //This class is used for connecting to the MySQL database
+
         public static int getCount(string tableName)
         {
             //get length of the table
@@ -85,7 +86,7 @@ namespace SchedulingApp
 
         public static int getItemID(string table, string name)
         {
-            string query = $"SELECT {table+"Id"} FROM {table} WHERE {table} = '{name}'";
+            string query = $"SELECT {table + "Id"} FROM {table} WHERE {table} = '{name}'";
             MySqlConnection conn = new MySqlConnection(connectionString);
             conn.Open();
             int ID = 0;
@@ -132,21 +133,42 @@ namespace SchedulingApp
                 MessageBox.Show("Add customers before creating an appointment.");
             }
         }
-        
+
         public static DataTable gridFiller(string q)
         {
             //Creates Datatable
             DataTable appointments = new DataTable();
-            
+
             //Connect to server and execute command
             MySqlConnection conn = new MySqlConnection(connectionString);
+            conn.Open();
             MySqlCommand aptCMD = new MySqlCommand(q, conn);
 
             //adapt data on output and close connection
             int dataApater = new MySqlDataAdapter(aptCMD).Fill(appointments);
+            conn.Close();
 
             return appointments;
         }
+
+        public static string[] getAptInfo(string cmd)
+        {
+            string[] aptInfo = { };
+
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            conn.Open();
+            MySqlCommand aptCMD = new MySqlCommand(cmd, conn);
+
+            MySqlDataReader reader = aptCMD.ExecuteReader();
+            while (reader.Read())
+            {
+                
+            }
+            conn.Close();
+
+            return aptInfo;
+        }
+
     }
 
 

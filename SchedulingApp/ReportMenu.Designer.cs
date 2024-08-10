@@ -30,7 +30,6 @@
         {
             this.reportsTitleLabel = new System.Windows.Forms.Label();
             this.userScheduleGrid = new System.Windows.Forms.DataGridView();
-            this.aptsByMonthGrid = new System.Windows.Forms.DataGridView();
             this.thirdReportGrid = new System.Windows.Forms.DataGridView();
             this.backButton = new System.Windows.Forms.Button();
             this.userLabel = new System.Windows.Forms.Label();
@@ -39,8 +38,12 @@
             this.monthComboBox = new System.Windows.Forms.ComboBox();
             this.titleOneLabel = new System.Windows.Forms.Label();
             this.titleTwoLabel = new System.Windows.Forms.Label();
+            this.meetingTypeLabel = new System.Windows.Forms.Label();
+            this.meetingTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.numberOfMeetingsLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.numbMeetings = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.userScheduleGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aptsByMonthGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thirdReportGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,14 +65,6 @@
             this.userScheduleGrid.Size = new System.Drawing.Size(333, 330);
             this.userScheduleGrid.TabIndex = 1;
             // 
-            // aptsByMonthGrid
-            // 
-            this.aptsByMonthGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.aptsByMonthGrid.Location = new System.Drawing.Point(369, 73);
-            this.aptsByMonthGrid.Name = "aptsByMonthGrid";
-            this.aptsByMonthGrid.Size = new System.Drawing.Size(333, 330);
-            this.aptsByMonthGrid.TabIndex = 2;
-            // 
             // thirdReportGrid
             // 
             this.thirdReportGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -80,7 +75,7 @@
             // 
             // backButton
             // 
-            this.backButton.Location = new System.Drawing.Point(981, 464);
+            this.backButton.Location = new System.Drawing.Point(981, 521);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(75, 23);
             this.backButton.TabIndex = 4;
@@ -100,7 +95,7 @@
             // monthLabel
             // 
             this.monthLabel.AutoSize = true;
-            this.monthLabel.Location = new System.Drawing.Point(369, 417);
+            this.monthLabel.Location = new System.Drawing.Point(430, 128);
             this.monthLabel.Name = "monthLabel";
             this.monthLabel.Size = new System.Drawing.Size(40, 13);
             this.monthLabel.TabIndex = 6;
@@ -117,34 +112,88 @@
             // monthComboBox
             // 
             this.monthComboBox.FormattingEnabled = true;
-            this.monthComboBox.Location = new System.Drawing.Point(415, 414);
+            this.monthComboBox.Location = new System.Drawing.Point(476, 125);
             this.monthComboBox.Name = "monthComboBox";
-            this.monthComboBox.Size = new System.Drawing.Size(287, 21);
+            this.monthComboBox.Size = new System.Drawing.Size(226, 21);
             this.monthComboBox.TabIndex = 8;
             // 
             // titleOneLabel
             // 
             this.titleOneLabel.AutoSize = true;
-            this.titleOneLabel.Location = new System.Drawing.Point(263, 57);
+            this.titleOneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleOneLabel.Location = new System.Drawing.Point(242, 54);
             this.titleOneLabel.Name = "titleOneLabel";
-            this.titleOneLabel.Size = new System.Drawing.Size(82, 13);
+            this.titleOneLabel.Size = new System.Drawing.Size(103, 16);
             this.titleOneLabel.TabIndex = 9;
             this.titleOneLabel.Text = "User Schedules";
             // 
             // titleTwoLabel
             // 
             this.titleTwoLabel.AutoSize = true;
-            this.titleTwoLabel.Location = new System.Drawing.Point(584, 57);
+            this.titleTwoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleTwoLabel.Location = new System.Drawing.Point(473, 54);
             this.titleTwoLabel.Name = "titleTwoLabel";
-            this.titleTwoLabel.Size = new System.Drawing.Size(118, 13);
+            this.titleTwoLabel.Size = new System.Drawing.Size(146, 16);
             this.titleTwoLabel.TabIndex = 10;
             this.titleTwoLabel.Text = "Appointments by Month";
+            // 
+            // meetingTypeLabel
+            // 
+            this.meetingTypeLabel.AutoSize = true;
+            this.meetingTypeLabel.Location = new System.Drawing.Point(395, 172);
+            this.meetingTypeLabel.Name = "meetingTypeLabel";
+            this.meetingTypeLabel.Size = new System.Drawing.Size(75, 13);
+            this.meetingTypeLabel.TabIndex = 11;
+            this.meetingTypeLabel.Text = "Meeting Type:";
+            // 
+            // meetingTypeComboBox
+            // 
+            this.meetingTypeComboBox.FormattingEnabled = true;
+            this.meetingTypeComboBox.Location = new System.Drawing.Point(476, 169);
+            this.meetingTypeComboBox.Name = "meetingTypeComboBox";
+            this.meetingTypeComboBox.Size = new System.Drawing.Size(226, 21);
+            this.meetingTypeComboBox.TabIndex = 12;
+            // 
+            // numberOfMeetingsLabel
+            // 
+            this.numberOfMeetingsLabel.AutoSize = true;
+            this.numberOfMeetingsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numberOfMeetingsLabel.Location = new System.Drawing.Point(442, 226);
+            this.numberOfMeetingsLabel.Name = "numberOfMeetingsLabel";
+            this.numberOfMeetingsLabel.Size = new System.Drawing.Size(122, 15);
+            this.numberOfMeetingsLabel.TabIndex = 13;
+            this.numberOfMeetingsLabel.Text = "Number of Meetings:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(720, 54);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(119, 16);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Third Report Label";
+            // 
+            // numbMeetings
+            // 
+            this.numbMeetings.AutoSize = true;
+            this.numbMeetings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numbMeetings.Location = new System.Drawing.Point(570, 226);
+            this.numbMeetings.Name = "numbMeetings";
+            this.numbMeetings.Size = new System.Drawing.Size(21, 15);
+            this.numbMeetings.TabIndex = 15;
+            this.numbMeetings.Text = "##";
             // 
             // ReportMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1068, 499);
+            this.ClientSize = new System.Drawing.Size(1068, 556);
+            this.Controls.Add(this.numbMeetings);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.numberOfMeetingsLabel);
+            this.Controls.Add(this.meetingTypeComboBox);
+            this.Controls.Add(this.meetingTypeLabel);
             this.Controls.Add(this.titleTwoLabel);
             this.Controls.Add(this.titleOneLabel);
             this.Controls.Add(this.monthComboBox);
@@ -153,13 +202,11 @@
             this.Controls.Add(this.userLabel);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.thirdReportGrid);
-            this.Controls.Add(this.aptsByMonthGrid);
             this.Controls.Add(this.userScheduleGrid);
             this.Controls.Add(this.reportsTitleLabel);
             this.Name = "ReportMenu";
             this.Text = "ReportMenu";
             ((System.ComponentModel.ISupportInitialize)(this.userScheduleGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aptsByMonthGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thirdReportGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -170,7 +217,6 @@
 
         private System.Windows.Forms.Label reportsTitleLabel;
         private System.Windows.Forms.DataGridView userScheduleGrid;
-        private System.Windows.Forms.DataGridView aptsByMonthGrid;
         private System.Windows.Forms.DataGridView thirdReportGrid;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Label userLabel;
@@ -179,5 +225,10 @@
         private System.Windows.Forms.ComboBox monthComboBox;
         private System.Windows.Forms.Label titleOneLabel;
         private System.Windows.Forms.Label titleTwoLabel;
+        private System.Windows.Forms.Label meetingTypeLabel;
+        private System.Windows.Forms.ComboBox meetingTypeComboBox;
+        private System.Windows.Forms.Label numberOfMeetingsLabel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label numbMeetings;
     }
 }

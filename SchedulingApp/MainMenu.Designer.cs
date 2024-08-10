@@ -43,7 +43,6 @@
             this.addCustButton = new System.Windows.Forms.Button();
             this.logoutButton = new System.Windows.Forms.Button();
             this.reportButton = new System.Windows.Forms.Button();
-            this.testButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.aptGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.custGridView)).BeginInit();
             this.SuspendLayout();
@@ -138,6 +137,7 @@
             this.deleteAptButton.TabIndex = 7;
             this.deleteAptButton.Text = "Delete";
             this.deleteAptButton.UseVisualStyleBackColor = true;
+            this.deleteAptButton.Click += new System.EventHandler(this.deleteAptButton_Click);
             // 
             // updateAptButton
             // 
@@ -209,22 +209,11 @@
             this.reportButton.UseVisualStyleBackColor = true;
             this.reportButton.Click += new System.EventHandler(this.reportButton_Click);
             // 
-            // testButton
-            // 
-            this.testButton.Location = new System.Drawing.Point(26, 404);
-            this.testButton.Name = "testButton";
-            this.testButton.Size = new System.Drawing.Size(75, 23);
-            this.testButton.TabIndex = 15;
-            this.testButton.Text = "testButton";
-            this.testButton.UseVisualStyleBackColor = true;
-            this.testButton.Click += new System.EventHandler(this.testButton_Click);
-            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1320, 450);
-            this.Controls.Add(this.testButton);
             this.Controls.Add(this.reportButton);
             this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.addCustButton);
@@ -266,6 +255,5 @@
         private System.Windows.Forms.Button addCustButton;
         private System.Windows.Forms.Button logoutButton;
         private System.Windows.Forms.Button reportButton;
-        private System.Windows.Forms.Button testButton;
     }
 }

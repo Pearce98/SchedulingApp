@@ -68,7 +68,7 @@ namespace SchedulingApp
 
                 //Write to login_history file
                 string logName = "Login_History.txt";
-                string time = DateTime.Now.ToString("u");
+                string time = DateTime.Now.ToString();
                 using (StreamWriter sw = File.AppendText(logName))
                 {
                     sw.WriteLine($"User ID: {ID} logged in at {time}");

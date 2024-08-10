@@ -8,6 +8,7 @@ namespace SchedulingApp
 {
     class CurrentUser
     {
+        //class is used to store data of the logged in user
         private static int currentID;
         private static string currentUserName;
         
