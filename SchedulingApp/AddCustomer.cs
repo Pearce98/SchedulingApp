@@ -82,7 +82,6 @@ namespace SchedulingApp
                     $"VALUES ('{countryID}', '{country}', '{now}', '{creator}', '{now}', '{creator}')";
                 sqlClass.insertItem(cmdString);
             }
-
             
             else
             {
@@ -119,12 +118,10 @@ namespace SchedulingApp
             string cmd = "INSERT INTO customer " +
                 $"VALUES ('{custID}', '{name}', '{addressID}', '1', '{now}', '{creator}', '{now}', '{creator}')";
             sqlClass.insertItem(cmd);
-            
 
             MessageBox.Show("Customer added to database");
             Close();
 
         }
-        
     }
 }

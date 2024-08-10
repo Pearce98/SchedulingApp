@@ -76,8 +76,6 @@ namespace SchedulingApp
                 eastStart = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(start, "Eastern Standard Time");
                 eastEnd = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(end, "Eastern Standard Time");
 
-
-
             }
             catch
             {
@@ -95,9 +93,6 @@ namespace SchedulingApp
                     "Please adjust the start and end times between those hours.");
             }
 
-            
-
-            
             string query = "INSERT INTO appointment " +
                 $"VALUES ('{aptID}', '{custID}', '{userID}', '{not}', '{not}', '{not}', '{not}', '{meetingType}'," +
                 $" '{not}', '{eastStart.ToString(@"yyyy-MM-dd hh:mm:ss")}', '{eastEnd.ToString(@"yyyy-MM-dd hh:mm:ss")}'," +

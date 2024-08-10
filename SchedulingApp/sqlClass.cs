@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -129,10 +131,24 @@ namespace SchedulingApp
             {
                 MessageBox.Show("Add customers before creating an appointment.");
             }
+        }
+        
+        public static DataTable gridFiller(string q)
+        {
+            //Creates Datatable
+            DataTable appointments = new DataTable();
             
+            //Connect to server and execute command
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            MySqlCommand aptCMD = new MySqlCommand(q, conn);
 
+            //adapt data on output and close connection
+            int dataApater = new MySqlDataAdapter(aptCMD).Fill(appointments);
+
+            return appointments;
         }
     }
+
 
 
 }
