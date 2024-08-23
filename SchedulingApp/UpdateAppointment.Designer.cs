@@ -44,7 +44,7 @@
             this.endDateTextBox = new System.Windows.Forms.TextBox();
             this.startTimeTextBox = new System.Windows.Forms.TextBox();
             this.typeTextBox = new System.Windows.Forms.TextBox();
-            this.custIDbox = new System.Windows.Forms.ComboBox();
+            this.custIDBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // cancelButton
@@ -183,20 +183,20 @@
             this.typeTextBox.Size = new System.Drawing.Size(214, 20);
             this.typeTextBox.TabIndex = 1;
             // 
-            // custIDbox
+            // custIDBox
             // 
-            this.custIDbox.FormattingEnabled = true;
-            this.custIDbox.Location = new System.Drawing.Point(194, 204);
-            this.custIDbox.Name = "custIDbox";
-            this.custIDbox.Size = new System.Drawing.Size(214, 21);
-            this.custIDbox.TabIndex = 6;
+            this.custIDBox.FormattingEnabled = true;
+            this.custIDBox.Location = new System.Drawing.Point(194, 204);
+            this.custIDBox.Name = "custIDBox";
+            this.custIDBox.Size = new System.Drawing.Size(214, 21);
+            this.custIDBox.TabIndex = 6;
             // 
             // UpdateAppointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(446, 298);
-            this.Controls.Add(this.custIDbox);
+            this.Controls.Add(this.custIDBox);
             this.Controls.Add(this.typeTextBox);
             this.Controls.Add(this.startTimeTextBox);
             this.Controls.Add(this.endDateTextBox);
@@ -238,6 +238,6 @@
         private System.Windows.Forms.TextBox endDateTextBox;
         private System.Windows.Forms.TextBox startTimeTextBox;
         private System.Windows.Forms.TextBox typeTextBox;
-        private System.Windows.Forms.ComboBox custIDbox;
+        private System.Windows.Forms.ComboBox custIDBox;
     }
 }

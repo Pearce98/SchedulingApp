@@ -36,7 +36,7 @@ namespace SchedulingApp
 
             aptIDTextBox.Text = aptID.ToString();
             typeTextBox.Text = type;
-            custIDbox.Text = custId;
+            custIDBox.Text = custId;
             startDateTextBox.Text = startDate;
             endDateTextBox.Text = endDate;
             startTimeTextBox.Text = startTime;

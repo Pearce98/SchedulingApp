@@ -100,10 +100,18 @@ namespace SchedulingApp
 
         private void updateAptButton_Click(object sender, EventArgs e)
         {
-            int aptID = (int)aptGridView.SelectedRows[0].Cells[0].Value;
-            UpdateAppointment updateAppointment = new UpdateAppointment(aptID);
-            updateAppointment.ShowDialog();
-            buttonChecker();
+            //exception handle to avoid attempting to update without any customers
+            try
+            {
+                int aptID = (int)aptGridView.SelectedRows[0].Cells[0].Value;
+                UpdateAppointment updateAppointment = new UpdateAppointment(aptID);
+                updateAppointment.ShowDialog();
+                buttonChecker();
+            }
+            catch
+            {
+                MessageBox.Show("No appointment selected");
+            }
         }
 
         private void addCustButton_Click(object sender, EventArgs e)
@@ -115,10 +123,18 @@ namespace SchedulingApp
 
         private void updateCustButton_Click(object sender, EventArgs e)
         {
-            int custID = (int)custGridView.SelectedRows[0].Cells[0].Value;
-            UpdateCustomer updateCustomer = new UpdateCustomer(custID);
-            updateCustomer.ShowDialog();
-            returnCustomerInfo();
+            //exception handle to avoid attempting to update without any customers
+            try
+            {
+                int custID = (int)custGridView.SelectedRows[0].Cells[0].Value;
+                UpdateCustomer updateCustomer = new UpdateCustomer(custID);
+                updateCustomer.ShowDialog();
+                returnCustomerInfo();
+            }
+            catch
+            {
+                MessageBox.Show("No customer selected.");
+            }
         }
 
         private void testButton_Click(object sender, EventArgs e)
@@ -143,10 +159,19 @@ namespace SchedulingApp
 
         private void deleteCustButton_Click(object sender, EventArgs e)
         {
-            //Selected Row will be asked to be deleted
-            int custID = (int)custGridView.SelectedRows[0].Cells[0].Value;
+            int custID = 0;
+            try
+            {
+                //Selected Row will be asked to be deleted
+                custID = (int)custGridView.SelectedRows[0].Cells[0].Value;
+            }
+            catch
+            {
+                MessageBox.Show("No customer selected");
+                return;
+            }
             var confirmResult = MessageBox.Show($"Are you sure you wish to delete customer? ID = {custID}", "Confirmation", MessageBoxButtons.YesNo);
-            
+
             //try catch statement is for customers with appointments
             try
             {
@@ -190,8 +215,18 @@ namespace SchedulingApp
 
         private void deleteAptButton_Click(object sender, EventArgs e)
         {
-            //Selected Row will be deleted
-            int aptID = (int)aptGridView.SelectedRows[0].Cells[0].Value;
+            int aptID = 0;
+            try
+            {
+                //Selected Row will be deleted
+                aptID = (int)aptGridView.SelectedRows[0].Cells[0].Value;
+            }
+            catch
+            {
+                MessageBox.Show("No appointment selected");
+                return;
+            }
+
             var confirmResult = MessageBox.Show($"Are you sure you wish to delete appointment {aptID}?","Confirmation", MessageBoxButtons.YesNo);
             
             try
