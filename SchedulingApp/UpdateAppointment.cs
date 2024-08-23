@@ -42,6 +42,10 @@ namespace SchedulingApp
             startTimeTextBox.Text = startTime;
             endTimeTextBox.Text = endTime;
 
+            DateTime now = DateTime.Now;
+            DateTime EST = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(now, "Eastern Standard Time");
+            estTime.Text = EST.ToString("hh:mm:ss tt");
+
 
         }
 
@@ -81,6 +85,46 @@ namespace SchedulingApp
             DateTime end;
             DateTime eastStart;
             DateTime eastEnd;
+            DateTime now = DateTime.Now;
+
+            try
+            {
+                startDate = DateTime.ParseExact(startDateTextBox.Text, "MM-dd-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                endDate = DateTime.ParseExact(endDateTextBox.Text, "MM-dd-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                startTime = DateTime.ParseExact(startTimeTextBox.Text, "hh:mm:ss tt", System.Globalization.CultureInfo.InvariantCulture);
+                endTime = DateTime.ParseExact(endTimeTextBox.Text, "hh:mm:ss tt", System.Globalization.CultureInfo.InvariantCulture); ;
+
+                start = startDate.Date.Add(startTime.TimeOfDay);
+                end = endDate.Date.Add(endTime.TimeOfDay);
+
+                //convert times to EST
+                eastStart = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(start, "Eastern Standard Time");
+                eastEnd = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(end, "Eastern Standard Time");
+
+            }
+            catch
+            {
+                MessageBox.Show("Please make sure all dates are in MM-DD-YYYY format and times are in HH:MM:SS tt format");
+                return;
+            }
+
+            DateTime earliest = DateTime.Parse("09:00:00 am");
+            DateTime latest = DateTime.Parse("05:00:00 pm");
+            if (eastStart.TimeOfDay < earliest.TimeOfDay || eastEnd.TimeOfDay > latest.TimeOfDay ||
+                eastStart.DayOfWeek == DayOfWeek.Saturday || eastStart.DayOfWeek == DayOfWeek.Sunday ||
+                eastEnd.DayOfWeek == DayOfWeek.Saturday || eastEnd.DayOfWeek == DayOfWeek.Sunday)
+            {
+                MessageBox.Show("Hours are between 09:00:00 am and 05:00:00 pm EST, Monday through Friday. " +
+                    "Please adjust the start and end times between those hours.");
+            }
+
+            string query = "UPDATE appointment " +
+                $"SET customerId = '{custID}', userId = '{userID}', type = '{meetingType}', start = '{start}', end = '{end}', lastUpdate = '{now}', lastUpdateBy = '{CurrentUser.returnUserID()}' " +
+                $"WHERE appointmentId = {appointmentID}";
+            sqlClass.insertItem(query);
+
+            MessageBox.Show("Appointment Created");
+            Close();
         }
     }
 }

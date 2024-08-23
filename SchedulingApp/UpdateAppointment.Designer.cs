@@ -45,6 +45,9 @@
             this.startTimeTextBox = new System.Windows.Forms.TextBox();
             this.typeTextBox = new System.Windows.Forms.TextBox();
             this.custIDBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.estTime = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cancelButton
@@ -191,11 +194,43 @@
             this.custIDBox.Size = new System.Drawing.Size(214, 21);
             this.custIDBox.TabIndex = 6;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(420, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(213, 65);
+            this.label1.TabIndex = 41;
+            this.label1.Text = "Note:\r\nBusiness Hours are 9:00 am - 5:00 pm EST.\r\nPlease put dates in MM-dd-yyyy " +
+    "format.\r\nPlease put times in hh:mm:ss tt format.\r\nYou may put times in your own " +
+    "time zone.\r\n";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(420, 155);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 13);
+            this.label2.TabIndex = 42;
+            this.label2.Text = "Current EST:";
+            // 
+            // estTime
+            // 
+            this.estTime.AutoSize = true;
+            this.estTime.Location = new System.Drawing.Point(495, 155);
+            this.estTime.Name = "estTime";
+            this.estTime.Size = new System.Drawing.Size(49, 13);
+            this.estTime.TabIndex = 43;
+            this.estTime.Text = "00:00:00";
+            // 
             // UpdateAppointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 298);
+            this.ClientSize = new System.Drawing.Size(717, 298);
+            this.Controls.Add(this.estTime);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.custIDBox);
             this.Controls.Add(this.typeTextBox);
             this.Controls.Add(this.startTimeTextBox);
@@ -239,5 +274,8 @@
         private System.Windows.Forms.TextBox startTimeTextBox;
         private System.Windows.Forms.TextBox typeTextBox;
         private System.Windows.Forms.ComboBox custIDBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label estTime;
     }
 }
