@@ -36,6 +36,8 @@ namespace SchedulingApp
             custGridView.Columns[5].HeaderText = "City";
             custGridView.Columns[6].HeaderText = "Country";
 
+
+
         }
 
         public void returnCustomerInfo()

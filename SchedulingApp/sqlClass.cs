@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Management;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -167,6 +168,30 @@ namespace SchedulingApp
             conn.Close();
 
             return aptInfo;
+        }
+
+        public static bool alertCheck(int userID)
+        {
+            int check = 0;
+            string query = "SELECT COUNT(*) FROM appointment " +
+                        $"WHERE userId = {userID} AND start <= NOW() + INTERVAL 15 MINUTE AND start > NOW()";
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                check = Convert.ToInt32(reader[0]);
+            }
+            conn.Close();
+            if (check != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }

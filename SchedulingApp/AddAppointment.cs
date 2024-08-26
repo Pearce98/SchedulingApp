@@ -51,6 +51,7 @@ namespace SchedulingApp
             DateTime createDate = DateTime.Now;
             string not = "not needed";
             string userName = CurrentUser.returnName();
+            DateTime now = DateTime.Now;
 
             //validate start and end dates/times are in proper format
             DateTime startTime;
@@ -94,10 +95,14 @@ namespace SchedulingApp
                 return;
             }
 
+            string strStart = start.ToString("yyyy-MM-dd HH:mm:ss");
+            string strEnd = end.ToString("yyyy-MM-dd HH:mm:ss");
+            string strNow = now.ToString("yyyy-MM-dd HH:mm:ss");
+
             string query = "INSERT INTO appointment " +
                 $"VALUES ('{aptID}', '{custID}', '{userID}', '{not}', '{not}', '{not}', '{not}', '{meetingType}'," +
-                $" '{not}', '{utcStart.ToString(@"yyyy-MM-dd hh:mm:ss")}', '{utcEnd.ToString(@"yyyy-MM-dd hh:mm:ss")}'," +
-                $" '{createDate.ToString(@"yyyy-MM-dd hh:mm:ss")}', '{userName}', '{createDate.ToString(@"yyyy-MM-dd hh:mm:ss")}', '{userName}')";
+                $" '{not}', '{strStart}', '{strEnd}'," +
+                $" '{strNow}', '{userName}', '{strNow}', '{userName}')";
             sqlClass.insertItem(query);
 
             MessageBox.Show("Appointment Created");

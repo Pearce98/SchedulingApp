@@ -79,6 +79,11 @@ namespace SchedulingApp
                 mainMenu.FormClosed += (s, args) => this.Close(); //Lambda Function if the main menu closes, it will close the whole program
                 this.Hide();
                 mainMenu.Show();
+
+                if (sqlClass.alertCheck(CurrentUser.returnUserID()))
+                {
+                    MessageBox.Show("You have an appointment within 15 minutes.");
+                }
             } 
             else 
             {
