@@ -80,6 +80,7 @@ namespace SchedulingApp
                 this.Hide();
                 mainMenu.Show();
 
+                //alert if user has a meeting within 15
                 if (sqlClass.alertCheck(CurrentUser.returnUserID()))
                 {
                     MessageBox.Show("You have an appointment within 15 minutes.");

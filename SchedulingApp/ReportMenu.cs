@@ -15,11 +15,42 @@ namespace SchedulingApp
         public ReportMenu()
         {
             InitializeComponent();
+
+            //fill user combobox with user IDs
+            string userIdListQuery = "SELECT userId FROM user";
+            sqlClass.fillComboBox(userComboBox, userIdListQuery);
+
+            //fill meeting types
+            string meetTypeListQuery = "SELECT DISTINCT type FROM appointment";
+            sqlClass.fillComboBox(meetingTypeComboBox, meetTypeListQuery);
+
+            //fill months combobox
+            var months = System.Globalization.DateTimeFormatInfo.InvariantInfo.MonthNames;
+            monthComboBox.DataSource = months;
+
+            //fill country box
+            string countryNameListQuery = "SELECT DISTINCT country FROM country";
+            sqlClass.fillComboBox(countryNameBox, countryNameListQuery);
         }
 
         private void backButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void updateScheduleButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void aptMonthUpdateButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numbCustUpdateButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

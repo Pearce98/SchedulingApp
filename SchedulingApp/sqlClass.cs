@@ -194,6 +194,11 @@ namespace SchedulingApp
             }
         }
 
+        public static bool checkOverlap()
+        {
+            return true;
+        }
+
     }
 
 

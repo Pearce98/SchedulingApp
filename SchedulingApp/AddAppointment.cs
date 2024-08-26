@@ -84,6 +84,7 @@ namespace SchedulingApp
                 return;
             }
 
+            //check to make sure it is within business hours
             DateTime earliest = DateTime.Parse("02:00:00 pm");
             DateTime latest = DateTime.Parse("10:00:00 pm");
             if (utcStart.TimeOfDay < earliest.TimeOfDay || utcEnd.TimeOfDay > latest.TimeOfDay ||
@@ -94,6 +95,15 @@ namespace SchedulingApp
                     "Please adjust the start and end times between those hours.");
                 return;
             }
+
+            if (utcStart > utcEnd)
+            {
+                MessageBox.Show("Start time cannot be before end time.");
+                return;
+            }
+
+
+
 
             string strStart = start.ToString("yyyy-MM-dd HH:mm:ss");
             string strEnd = end.ToString("yyyy-MM-dd HH:mm:ss");
