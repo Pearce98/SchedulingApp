@@ -59,8 +59,8 @@ namespace SchedulingApp
             DateTime endDate;
             DateTime start;
             DateTime end;
-            DateTime eastStart;
-            DateTime eastEnd;
+            DateTime utcStart;
+            DateTime utcEnd;
 
             try
             {
@@ -72,9 +72,9 @@ namespace SchedulingApp
                 start = startDate.Date.Add(startTime.TimeOfDay);
                 end = endDate.Date.Add(endTime.TimeOfDay);
 
-                //convert times to EST
-                eastStart = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(start, "Eastern Standard Time");
-                eastEnd = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(end, "Eastern Standard Time");
+                //convert times to UTC
+                utcStart = TimeZoneInfo.ConvertTimeToUtc(start, TimeZoneInfo.Local);
+                utcEnd = TimeZoneInfo.ConvertTimeToUtc(end, TimeZoneInfo.Local);
 
             }
             catch
@@ -83,19 +83,20 @@ namespace SchedulingApp
                 return;
             }
 
-            DateTime earliest = DateTime.Parse("09:00:00 am");
-            DateTime latest = DateTime.Parse("05:00:00 pm");
-            if (eastStart.TimeOfDay < earliest.TimeOfDay || eastEnd.TimeOfDay > latest.TimeOfDay ||
-                eastStart.DayOfWeek == DayOfWeek.Saturday || eastStart.DayOfWeek == DayOfWeek.Sunday ||
-                eastEnd.DayOfWeek == DayOfWeek.Saturday || eastEnd.DayOfWeek == DayOfWeek.Sunday)
+            DateTime earliest = DateTime.Parse("02:00:00 pm");
+            DateTime latest = DateTime.Parse("10:00:00 pm");
+            if (utcStart.TimeOfDay < earliest.TimeOfDay || utcEnd.TimeOfDay > latest.TimeOfDay ||
+                utcStart.DayOfWeek == DayOfWeek.Saturday || utcStart.DayOfWeek == DayOfWeek.Sunday ||
+                utcEnd.DayOfWeek == DayOfWeek.Saturday || utcEnd.DayOfWeek == DayOfWeek.Sunday)
             {
                 MessageBox.Show("Hours are between 09:00:00 am and 05:00:00 pm EST, Monday through Friday. " +
                     "Please adjust the start and end times between those hours.");
+                return;
             }
 
             string query = "INSERT INTO appointment " +
                 $"VALUES ('{aptID}', '{custID}', '{userID}', '{not}', '{not}', '{not}', '{not}', '{meetingType}'," +
-                $" '{not}', '{eastStart.ToString(@"yyyy-MM-dd hh:mm:ss")}', '{eastEnd.ToString(@"yyyy-MM-dd hh:mm:ss")}'," +
+                $" '{not}', '{utcStart.ToString(@"yyyy-MM-dd hh:mm:ss")}', '{utcEnd.ToString(@"yyyy-MM-dd hh:mm:ss")}'," +
                 $" '{createDate.ToString(@"yyyy-MM-dd hh:mm:ss")}', '{userName}', '{createDate.ToString(@"yyyy-MM-dd hh:mm:ss")}', '{userName}')";
             sqlClass.insertItem(query);
 

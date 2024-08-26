@@ -26,13 +26,23 @@ namespace SchedulingApp
             string end = Convert.ToString(aptInfo.Rows[0]["end"]);
             string custId = Convert.ToString(aptInfo.Rows[0]["customerId"]);
 
+            DateTime now = DateTime.Now;
+            DateTime EST = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(now, "Eastern Standard Time");
+            estTime.Text = EST.ToString("hh:mm:ss tt");
+
             DateTime startDateTime = DateTime.Parse(start);
-            string startDate = startDateTime.Date.ToString("MM-dd-yyyy");
-            string startTime = Convert.ToString(startDateTime.TimeOfDay);
+            DateTime utcStart = DateTime.SpecifyKind(startDateTime, DateTimeKind.Utc);
+            startDateTime = utcStart.ToLocalTime();
+            string startDate = startDateTime.ToString("MM-dd-yyyy");
+            string startTime = startDateTime.ToString("hh:mm:ss tt");
+
 
             DateTime endDateTime = DateTime.Parse(end);
-            string endDate = endDateTime.Date.ToString("MM-dd-yyyy");
-            string endTime = Convert.ToString(endDateTime.TimeOfDay);
+            DateTime utcEnd = DateTime.SpecifyKind(endDateTime, DateTimeKind.Utc);
+            endDateTime = utcEnd.ToLocalTime();
+            string endDate = endDateTime.ToString("MM-dd-yyyy");
+            string endTime = endDateTime.ToString("hh:mm:ss tt");
+
 
             aptIDTextBox.Text = aptID.ToString();
             typeTextBox.Text = type;
@@ -41,11 +51,6 @@ namespace SchedulingApp
             endDateTextBox.Text = endDate;
             startTimeTextBox.Text = startTime;
             endTimeTextBox.Text = endTime;
-
-            DateTime now = DateTime.Now;
-            DateTime EST = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(now, "Eastern Standard Time");
-            estTime.Text = EST.ToString("hh:mm:ss tt");
-
 
         }
 
@@ -83,8 +88,8 @@ namespace SchedulingApp
             DateTime endDate;
             DateTime start;
             DateTime end;
-            DateTime eastStart;
-            DateTime eastEnd;
+            DateTime utcStart;
+            DateTime utcEnd;
             DateTime now = DateTime.Now;
 
             try
@@ -97,9 +102,9 @@ namespace SchedulingApp
                 start = startDate.Date.Add(startTime.TimeOfDay);
                 end = endDate.Date.Add(endTime.TimeOfDay);
 
-                //convert times to EST
-                eastStart = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(start, "Eastern Standard Time");
-                eastEnd = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(end, "Eastern Standard Time");
+                //convert times to UTC
+                utcStart = TimeZoneInfo.ConvertTimeToUtc(start, TimeZoneInfo.Local);
+                utcEnd = TimeZoneInfo.ConvertTimeToUtc(end, TimeZoneInfo.Local);
 
             }
             catch
@@ -108,22 +113,27 @@ namespace SchedulingApp
                 return;
             }
 
-            DateTime earliest = DateTime.Parse("09:00:00 am");
-            DateTime latest = DateTime.Parse("05:00:00 pm");
-            if (eastStart.TimeOfDay < earliest.TimeOfDay || eastEnd.TimeOfDay > latest.TimeOfDay ||
-                eastStart.DayOfWeek == DayOfWeek.Saturday || eastStart.DayOfWeek == DayOfWeek.Sunday ||
-                eastEnd.DayOfWeek == DayOfWeek.Saturday || eastEnd.DayOfWeek == DayOfWeek.Sunday)
+            DateTime earliest = DateTime.Parse("02:00:00 pm");
+            DateTime latest = DateTime.Parse("10:00:00 pm");
+            if (utcStart.TimeOfDay < earliest.TimeOfDay || utcEnd.TimeOfDay > latest.TimeOfDay ||
+                utcStart.DayOfWeek == DayOfWeek.Saturday || utcStart.DayOfWeek == DayOfWeek.Sunday ||
+                utcEnd.DayOfWeek == DayOfWeek.Saturday || utcEnd.DayOfWeek == DayOfWeek.Sunday)
             {
                 MessageBox.Show("Hours are between 09:00:00 am and 05:00:00 pm EST, Monday through Friday. " +
                     "Please adjust the start and end times between those hours.");
+                return;
             }
 
+            string strStart = start.ToString("yyyy-MM-dd HH:mm:ss");
+            string strEnd = end.ToString("yyyy-MM-dd HH:mm:ss");
+            string strNow = now.ToString("yyyy-MM-dd HH:mm:ss");
+
             string query = "UPDATE appointment " +
-                $"SET customerId = '{custID}', userId = '{userID}', type = '{meetingType}', start = '{start}', end = '{end}', lastUpdate = '{now}', lastUpdateBy = '{CurrentUser.returnUserID()}' " +
-                $"WHERE appointmentId = {appointmentID}";
+                $"SET customerId = {custID}, userId = {userID}, type = '{meetingType}', start = '{strStart}', end = '{strEnd}', lastUpdate = '{strNow}', lastUpdateBy = '{CurrentUser.returnUserID()}' " +
+                $"WHERE appointmentId = {aptIDTextBox.Text}";
             sqlClass.insertItem(query);
 
-            MessageBox.Show("Appointment Created");
+            MessageBox.Show("Appointment Updated");
             Close();
         }
     }

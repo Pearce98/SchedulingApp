@@ -103,7 +103,7 @@ namespace SchedulingApp
             //exception handle to avoid attempting to update without any customers
             try
             {
-                int aptID = (int)aptGridView.SelectedRows[0].Cells[0].Value;
+                int aptID = (int)aptGridView.CurrentRow.Cells[0].Value;
                 UpdateAppointment updateAppointment = new UpdateAppointment(aptID);
                 updateAppointment.ShowDialog();
                 buttonChecker();
@@ -126,7 +126,7 @@ namespace SchedulingApp
             //exception handle to avoid attempting to update without any customers
             try
             {
-                int custID = (int)custGridView.SelectedRows[0].Cells[0].Value;
+                int custID = (int)custGridView.Rows[custGridView.CurrentCell.RowIndex].Cells[0].Value;
                 UpdateCustomer updateCustomer = new UpdateCustomer(custID);
                 updateCustomer.ShowDialog();
                 returnCustomerInfo();
