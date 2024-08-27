@@ -80,8 +80,10 @@ namespace SchedulingApp
                 this.Hide();
                 mainMenu.Show();
 
+                string query = "SELECT COUNT(*) FROM appointment " +
+                        $"WHERE userId = {CurrentUser.returnUserID()} AND start <= NOW() + INTERVAL 15 MINUTE AND start > NOW()";
                 //alert if user has a meeting within 15
-                if (sqlClass.alertCheck(CurrentUser.returnUserID()))
+                if (sqlClass.alertCheck(query))
                 {
                     MessageBox.Show("You have an appointment within 15 minutes.");
                 }

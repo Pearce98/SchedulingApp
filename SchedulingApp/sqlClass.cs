@@ -170,11 +170,9 @@ namespace SchedulingApp
             return aptInfo;
         }
 
-        public static bool alertCheck(int userID)
+        public static bool alertCheck(string query)
         {
             int check = 0;
-            string query = "SELECT COUNT(*) FROM appointment " +
-                        $"WHERE userId = {userID} AND start <= NOW() + INTERVAL 15 MINUTE AND start > NOW()";
             MySqlConnection conn = new MySqlConnection(connectionString);
             conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -194,10 +192,7 @@ namespace SchedulingApp
             }
         }
 
-        public static bool checkOverlap()
-        {
-            return true;
-        }
+        
 
     }
 

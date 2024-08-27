@@ -92,23 +92,43 @@ namespace SchedulingApp
                 utcEnd.DayOfWeek == DayOfWeek.Saturday || utcEnd.DayOfWeek == DayOfWeek.Sunday)
             {
                 MessageBox.Show("Hours are between 09:00:00 am and 05:00:00 pm EST, Monday through Friday. " +
-                    "Please adjust the start and end times between those hours.");
+                                "Please adjust the start and end times between those hours.");
                 return;
             }
 
+            //makes sure start is not after end
             if (utcStart > utcEnd)
             {
                 MessageBox.Show("Start time cannot be before end time.");
                 return;
             }
 
-
-
-
             string strStart = start.ToString("yyyy-MM-dd HH:mm:ss");
             string strEnd = end.ToString("yyyy-MM-dd HH:mm:ss");
             string strNow = now.ToString("yyyy-MM-dd HH:mm:ss");
 
+            //checks for overlapping user appointments
+            string overlapCMD1 = "SELECT COUNT(*) FROM appointment " +
+                               $"WHERE userId = {userID} " +
+                               $"AND start < '{strEnd}' AND end > '{strStart}'";
+            if (sqlClass.alertCheck(overlapCMD1))
+            {
+                MessageBox.Show("This meeting overlaps with another one of your appointments, please change the date / times.");
+                return;
+            }
+
+            //checks for overlapping customer appointments
+            string overlapCMD2 = "SELECT COUNT(*) FROM appointment " +
+                               $"WHERE customerId = {custID} " +
+                               $"AND start < '{strEnd}' AND end > '{strStart}'";
+            if (sqlClass.alertCheck(overlapCMD2))
+            {
+                MessageBox.Show("This meeting overlaps with another one of the customer's appointments, please change the date / times.");
+                return;
+            }
+
+
+            //creates the appointment
             string query = "INSERT INTO appointment " +
                 $"VALUES ('{aptID}', '{custID}', '{userID}', '{not}', '{not}', '{not}', '{not}', '{meetingType}'," +
                 $" '{not}', '{strStart}', '{strEnd}'," +
