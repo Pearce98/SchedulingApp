@@ -131,7 +131,8 @@ namespace SchedulingApp
             //checks for overlapping user appointments
             string overlapCMD1 = "SELECT COUNT(*) FROM appointment " +
                                $"WHERE userId = {userID} " +
-                               $"AND start < '{strEnd}' AND end > '{strStart}'";
+                               $"AND start < '{strEnd}' AND end > '{strStart}' " +
+                               $"AND NOT appointmentId = {aptIDTextBox.Text}";
             if (sqlClass.alertCheck(overlapCMD1))
             {
                 MessageBox.Show("This meeting overlaps with another one of your appointments, please change the date / times.");
@@ -141,7 +142,8 @@ namespace SchedulingApp
             //checks for overlapping customer appointments
             string overlapCMD2 = "SELECT COUNT(*) FROM appointment " +
                                $"WHERE customerId = {custID} " +
-                               $"AND start < '{strEnd}' AND end > '{strStart}'";
+                               $"AND start < '{strEnd}' AND end > '{strStart}' " +
+                               $"AND NOT appointmentId = {aptIDTextBox.Text}";
             if (sqlClass.alertCheck(overlapCMD2))
             {
                 MessageBox.Show("This meeting overlaps with another one of the customer's appointments, please change the date / times.");
