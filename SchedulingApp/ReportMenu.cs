@@ -31,6 +31,8 @@ namespace SchedulingApp
             //fill country box
             string countryNameListQuery = "SELECT DISTINCT country FROM country";
             sqlClass.fillComboBox(countryNameBox, countryNameListQuery);
+
+
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -40,7 +42,11 @@ namespace SchedulingApp
 
         private void updateScheduleButton_Click(object sender, EventArgs e)
         {
-
+            //userScheduledGrid updater
+            Func<string, int> converter = x => Convert.ToInt32(x); //Lambda to convert
+            int userId = converter(userComboBox.Text);
+            string updateString = $"SELECT appointmentId, type, start FROM appointment WHERE userId = {userId}";
+            userScheduleGrid.DataSource = sqlClass.gridFiller(updateString);
         }
 
         private void aptMonthUpdateButton_Click(object sender, EventArgs e)
@@ -50,7 +56,16 @@ namespace SchedulingApp
 
         private void numbCustUpdateButton_Click(object sender, EventArgs e)
         {
-
+            string query = "SELECT COUNT(*) FROM customer " +
+                "INNER JOIN address " +
+                "ON customer.addressId = address.addressId " +
+                "INNER JOIN city " +
+                "ON address.cityId = city.cityID " +
+                "INNER JOIN country " +
+                "ON city.countryId = country.countryId " +
+                $"WHERE country = '{countryNameBox.Text}'";
+            string countOfCust = sqlClass.returnItem(query);
+            numbCusts.Text = countOfCust;
         }
     }
 }

@@ -64,9 +64,14 @@
             // 
             // userScheduleGrid
             // 
+            this.userScheduleGrid.AllowUserToAddRows = false;
+            this.userScheduleGrid.AllowUserToDeleteRows = false;
+            this.userScheduleGrid.AllowUserToResizeColumns = false;
+            this.userScheduleGrid.AllowUserToResizeRows = false;
             this.userScheduleGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.userScheduleGrid.Location = new System.Drawing.Point(12, 73);
             this.userScheduleGrid.Name = "userScheduleGrid";
+            this.userScheduleGrid.RowHeadersVisible = false;
             this.userScheduleGrid.Size = new System.Drawing.Size(333, 330);
             this.userScheduleGrid.TabIndex = 1;
             // 
@@ -177,9 +182,9 @@
             this.numbMeetings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numbMeetings.Location = new System.Drawing.Point(570, 226);
             this.numbMeetings.Name = "numbMeetings";
-            this.numbMeetings.Size = new System.Drawing.Size(21, 15);
+            this.numbMeetings.Size = new System.Drawing.Size(14, 15);
             this.numbMeetings.TabIndex = 15;
-            this.numbMeetings.Text = "##";
+            this.numbMeetings.Text = "0";
             // 
             // updateScheduleButton
             // 
@@ -234,9 +239,9 @@
             this.numbCusts.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numbCusts.Location = new System.Drawing.Point(971, 228);
             this.numbCusts.Name = "numbCusts";
-            this.numbCusts.Size = new System.Drawing.Size(21, 15);
+            this.numbCusts.Size = new System.Drawing.Size(14, 15);
             this.numbCusts.TabIndex = 21;
-            this.numbCusts.Text = "##";
+            this.numbCusts.Text = "0";
             // 
             // numbCustUpdateButton
             // 
