@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,9 @@ namespace SchedulingApp
 {
     public partial class ReportMenu : Form
     {
+
+        public Hashtable numbMonths = new Hashtable();
+
         public ReportMenu()
         {
             InitializeComponent();
@@ -32,6 +36,19 @@ namespace SchedulingApp
             string countryNameListQuery = "SELECT DISTINCT country FROM country";
             sqlClass.fillComboBox(countryNameBox, countryNameListQuery);
 
+            numbMonths.Add("January","1");
+            numbMonths.Add("February", "2");
+            numbMonths.Add("March", "3");
+            numbMonths.Add("April", "4");
+            numbMonths.Add("May", "5");
+            numbMonths.Add("June", "6");
+            numbMonths.Add("July", "7");
+            numbMonths.Add("August", "8");
+            numbMonths.Add("September", "9");
+            numbMonths.Add("October", "10");
+            numbMonths.Add("November", "11");
+            numbMonths.Add("December", "12");
+
 
         }
 
@@ -49,9 +66,32 @@ namespace SchedulingApp
             userScheduleGrid.DataSource = sqlClass.gridFiller(updateString);
         }
 
+        //lambda function used for second and third reports
+        Func<Label, string, bool> labelUpdater = (x, y) =>
+        {
+            try
+            {
+                string count = sqlClass.returnItem(y);
+                x.Text = count;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        };
+
         private void aptMonthUpdateButton_Click(object sender, EventArgs e)
         {
-
+            string month = (string)numbMonths[monthComboBox.Text];
+            string appointmentType = meetingTypeComboBox.Text;
+            string query = "SELECT COUNT(*) FROM appointment " +
+                          $"WHERE type = '{appointmentType}' AND MONTH(start) = '{month}'";
+            bool check = labelUpdater(numbMeetings, query);
+            if (!check)
+            {
+                MessageBox.Show("There was an error updating the count");
+            }
         }
 
         private void numbCustUpdateButton_Click(object sender, EventArgs e)
@@ -64,8 +104,11 @@ namespace SchedulingApp
                 "INNER JOIN country " +
                 "ON city.countryId = country.countryId " +
                 $"WHERE country = '{countryNameBox.Text}'";
-            string countOfCust = sqlClass.returnItem(query);
-            numbCusts.Text = countOfCust;
+            bool check = labelUpdater(numbCusts, query);
+            if (!check)
+            {
+                MessageBox.Show("There was an error updating the count");
+            }
         }
     }
 }
