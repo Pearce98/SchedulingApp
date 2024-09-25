@@ -22,9 +22,14 @@ namespace SchedulingApp
         {
             InitializeComponent();
             //Display Location
-            locationLabel.Text = RegionInfo.CurrentRegion.DisplayName;
-
-            if (CultureInfo.CurrentUICulture.LCID == 2058)
+            locationLabel.Text = RegionInfo.CurrentRegion.EnglishName;
+            
+            /*
+             * Need to go to control panel and click "Change date, time, number formats"
+             * Then select "Spanish (Mexico)" under format, then click apply for the login
+             * screen to display in Spanish.
+             */
+            if (locationLabel.Text == "Mexico")
             {
                 //Label Translations in Spanish (Mexico)
                 usernameLabel.Text = "Nombre de usario";
