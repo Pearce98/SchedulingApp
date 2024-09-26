@@ -1,46 +1,3 @@
-Introduction
-Throughout your career in software design and development, you will be asked to create applications with various features and criteria based on a variety of business requirements. For this assessment, you will create your own C# application with requirements that will imitate those you will encounter in a real-world job assignment.
-
- 
-
-The skills you will demonstrate in this assessment are also directly relevant to technical interview questions for future employment. The C# application that you create should become a portfolio piece that you show to future employers.
-
- 
-
-Several supporting documents and links have been included to help you complete this task. The attached “Database ERD” document shows the entity relationship diagram (ERD) for this database, which you can reference as you create your application.
-
- 
-
-You will also use the “Performance Assessment Lab Area” web link to access the virtual lab environment needed to complete this task. The preferred integrated development environment (IDE) for this assignment is Visual Studio. If you choose to use another IDE, you must export your project into Visual Studio format for submission.
-
- 
-
-Your submission should include a ZIP file with all the necessary code files to compile, support, and run your application. The ZIP file submission must also keep the project file and folder structure intact for the Visual Studio IDE.
-
-Scenario
-You are working for a software company that has been contracted to develop a scheduling desktop user interface application. The contract is with a global consulting organization that conducts business in multiple languages and has main offices in the following locations: Phoenix, Arizona; New York, New York; and London, England. The consulting organization has provided a MySQL database that your C# application must pull data from. However, this database is used for other systems, so its structure cannot be modified.
-
- 
-
-The organization has outlined specific business requirements that must be included as part of the application. From these requirements, a system analyst at your company created solution statements for you to implement when developing the application. These statements are listed in the “Requirements” section.
-
-Requirements
-Your submission must be your original work. No more than a combined total of 30% of the submission and no more than a 10% match to any one individual source can be directly quoted or closely paraphrased from sources, even if cited correctly. The similarity report that is provided when you submit your task can be used as a guide.
-
-
-
-You must use the rubric to direct the creation of your submission because it provides detailed criteria that will be used to evaluate your work. Each requirement below may be evaluated by more than one rubric aspect. The rubric aspect titles may contain hyperlinks to relevant portions of the course.
-
-
-
-Tasks may not be submitted as cloud links, such as links to Google Docs, Google Slides, OneDrive, etc., unless specified in the task requirements. All other submissions must be file types that are uploaded and submitted as attachments (e.g., .docx, .pdf, .ppt).
-
-
-
-Note: You are not allowed to use frameworks or external libraries, except for the .NET Framework. The database does not contain data, so it needs to be populated. The word “test” must be used as the username and password to login to the C# application.
-
-
-
 A.   Create an application by completing the following tasks in C#:
 
 1.   Create a login form that has the ability to do the following:
@@ -100,3 +57,4 @@ b.   Add exception handling that can be used when performing each of the followi
 •    one additional report of your choice
 
 8.   Record the timestamp and the username of each login in a text file named “Login_History.txt,” ensuring that each new record is appended to the log file.
+
