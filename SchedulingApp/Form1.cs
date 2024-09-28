@@ -29,7 +29,9 @@ namespace SchedulingApp
              * Then select "Spanish (Mexico)" under format, then click apply for the login
              * screen to display in Spanish.
              */
-            if (locationLabel.Text == "Mexico")
+            if (locationLabel.Text == "Mexico" || locationLabel.Text == "Argentina" || locationLabel.Text == "Colombia" ||
+                locationLabel.Text == "Peru" || locationLabel.Text == "Venezeula" || locationLabel.Text == "Chile" ||
+                locationLabel.Text == "Spain" || locationLabel.Text == "Ecuador" || locationLabel.Text == "Brazil")
             {
                 //Label Translations in Spanish (Mexico)
                 usernameLabel.Text = "Nombre de usario";
