@@ -26,8 +26,7 @@ namespace SchedulingApp
             
             /*
              * Need to go to control panel and click "Change date, time, number formats"
-             * Then select "Spanish (Mexico)" under format, then click apply for the login
-             * screen to display in Spanish.
+             * Then select Spanish for one of the countries listed in the if statement below
              */
             if (locationLabel.Text == "Mexico" || locationLabel.Text == "Argentina" || locationLabel.Text == "Colombia" ||
                 locationLabel.Text == "Peru" || locationLabel.Text == "Venezeula" || locationLabel.Text == "Chile" ||
